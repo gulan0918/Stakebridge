@@ -1,6 +1,7 @@
 // Convert an explicitly supplied IHP TSX source snapshot without executing it.
 // Usage: node scripts/import-ihp.mjs source.tsx <source-commit> [YYYY-MM-DD]
 import ts from "typescript";
+import { standardStageName } from "../src/journey.ts";
 import { readFile, writeFile } from "node:fs/promises";
 const [filename, revision, checkedOn = new Date().toISOString().slice(0, 10)] =
   process.argv.slice(2);
@@ -28,14 +29,7 @@ const fixed = new Map([
   ["Beijing Weixinkang", 4],
   ["Dr. Huang Jun", 5],
 ]);
-const stages = {
-  Patient: "Patient",
-  "R&D": "R&D",
-  Treatment: "Treatment",
-  Manufacturing: "Manufacturing",
-  "Market access": "Market access",
-  Rehabilitation: "Rehabilitation",
-};
+
 const roles = {
   Patient: "Patient perspective",
   "R&D": "Research",
@@ -43,6 +37,23 @@ const roles = {
   Manufacturing: "Manufacturing",
   "Market access": "Translation & access",
   Rehabilitation: "Rehabilitation & society",
+};
+const stageRoles = {
+  Patient: ["Users & beneficiaries"],
+  "R&D": ["Experts & researchers"],
+  Manufacturing: ["Producers & providers"],
+  "Market access": ["Partners & funders"],
+  Treatment: ["Implementers & operators"],
+  Rehabilitation: ["Experts & researchers"],
+};
+const roleOverrides = {
+  "Prof. Li Jianqin": ["Experts & researchers"],
+  "Zhang Binghong": ["Partners & funders", "Decision-makers"],
+  "Tung Wah Group of Hospitals": [
+    "Producers & providers",
+    "Implementers & operators",
+  ],
+  "Legislator Lam Chit-yuen": ["Decision-makers"],
 };
 function plain(node) {
   if (!node) return "";
@@ -155,9 +166,11 @@ function visit(node) {
       topic,
       role: extra.role || roles[stage],
       organisation: extra.organisation || "",
-      domain: "Biomedical materials",
-      stages: [stages[stage]],
-      tags: [topic, roles[stage]].filter(Boolean),
+      domain: "Health & wellbeing",
+      roleTags: roleOverrides[name] || stageRoles[stage],
+      stages: [standardStageName(stage)],
+      sourceStage: stage,
+      tags: ["Biomedical materials", topic, roles[stage]].filter(Boolean),
       ...texts,
       interviewDate: date,
       questions: [],
@@ -193,6 +206,24 @@ function visit(node) {
   ts.forEachChild(node, visit);
 }
 visit(input);
+const previousText = await readFile(
+  new URL("../public/registry/entries.json", import.meta.url),
+  "utf8",
+).catch((error) => {
+  if (error.code === "ENOENT") return '{"entries":[]}';
+  throw error;
+});
+const previous = new Map(
+  JSON.parse(previousText).entries.map((entry) => [entry.id, entry]),
+);
+const comparable = (entry) =>
+  JSON.stringify({ ...entry, revision: 0, updated: "" });
+for (const entry of entries) {
+  const old = previous.get(entry.id);
+  entry.revision = old
+    ? old.revision + (comparable(old) === comparable(entry) ? 0 : 1)
+    : 1;
+}
 await writeFile(
   new URL("../public/registry/entries.json", import.meta.url),
   JSON.stringify({ schemaVersion: 1, updated: checkedOn, entries }, null, 2) +

@@ -1,3 +1,5 @@
+import { JOURNEY_STAGES } from "../../journey.ts";
+
 export const SECTIONS = [
   {
     key: "rationale",
@@ -55,14 +57,7 @@ export type Workspace = {
 
 export const newId = () => crypto.randomUUID();
 export const defaultStages = (): Stage[] =>
-  [
-    "Patient",
-    "R&D",
-    "Manufacturing",
-    "Market access & entrepreneurship",
-    "Treatment",
-    "Rehabilitation",
-  ].map((name) => ({ id: newId(), name }));
+  JOURNEY_STAGES.map((name) => ({ id: newId(), name }));
 
 export function newStakeholder(stageId: string): Stakeholder {
   return {

@@ -20,6 +20,9 @@ import {
 import { createBackup, readBackup } from "./stakebridge/storage";
 import type { WorkspaceStore } from "./stakebridge/useWorkspace";
 import { exportWord } from "./stakebridge/word";
+import { InterviewDate } from "./stakebridge/InterviewDate";
+import { LibraryPicker } from "../registry/LibraryPicker";
+import type { Registry, RegistryEntry } from "../registry/schema";
 import "./StakeholderWorkspace.css";
 
 function Icon({
@@ -197,31 +200,20 @@ function Setup({
   return (
     <div className="sb-setup">
       <div className="sb-setup-story">
-        <span className="sb-eyebrow">Project lifecycle</span>
         <div className="sb-display">
-          Stakeholder engagement
+          Your project.
           <br />
-          <em>from research to delivery.</em>
+          <em>Your stakeholders.</em>
         </div>
-        <p>
-          Connect the people you meet to the decisions you make. Build a
-          stakeholder journey around your project, from the first question to
-          real-world impact.
-        </p>
         <div className="sb-method">
           {SECTIONS.map((section, index) => (
             <div key={section.key}>
               <span>0{index + 1}</span>
               <div>
                 <b>{section.title}</b>
-                <small>{section.question}</small>
               </div>
             </div>
           ))}
-        </div>
-        <div className="sb-local-note">
-          <span className="sb-status-dot" /> Local workspace · your notes and
-          files stay in this browser
         </div>
       </div>
       <form className="sb-setup-form" onSubmit={submit}>
@@ -233,14 +225,10 @@ function Setup({
             2 · Your journey
           </span>
         </div>
-        <h2>
-          {step === 1 ? "Start with your project" : "Map the path to impact"}
-        </h2>
-        <p>
-          {step === 1
-            ? "Create a local workspace for your team. No account is needed for this version."
-            : "Choose 4–8 stages in your product’s journey. Rename, add or reorder them to fit your work."}
-        </p>
+        <h2>{step === 1 ? "Start with your project" : "Define your stages"}</h2>
+        {step === 2 && (
+          <p>Choose 4–8 stages. Rename and reorder to fit your project.</p>
+        )}
         {step === 1 ? (
           <div className="sb-fields">
             <label htmlFor={`${prefix}-team`}>
@@ -293,12 +281,12 @@ function Setup({
             </button>
           )}
           <button className="sb-button sb-button-primary" type="submit">
-            {step === 1 ? "Build your journey" : "Open workspace"}
+            {step === 1 ? "Continue" : "Open workspace"}
             <Icon name="arrow" />
           </button>
         </div>
         <button className="sb-text-button" type="button" onClick={onRestore}>
-          Already have a workspace? Restore a backup
+          Restore backup
         </button>
       </form>
     </div>
@@ -336,10 +324,16 @@ export function StakeholderWorkspace({
   store,
   openRecordId,
   starter,
+  registry,
+  registryError,
+  onAddFromLibrary,
 }: {
   store: WorkspaceStore;
   openRecordId?: string;
   starter?: { stages: Stage[]; records: Stakeholder[] };
+  registry: Registry | null;
+  registryError: string;
+  onAddFromLibrary: (entry: RegistryEntry, stageId: string) => string;
 }) {
   const { workspace, loading, loadError, saveState, change, flush, getFile } =
     store;
@@ -356,10 +350,12 @@ export function StakeholderWorkspace({
   );
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("all");
-  const [panel, setPanel] = useState<"journey" | "export" | "backup" | null>(
-    null,
-  );
+  const [panel, setPanel] = useState<
+    "journey" | "export" | "backup" | "library" | null
+  >(null);
   const [stages, setStages] = useState<Stage[]>([]);
+  const [teamName, setTeamName] = useState("");
+  const [projectName, setProjectName] = useState("");
   const [includeDrafts, setIncludeDrafts] = useState(true);
   const [deletePrompt, setDeletePrompt] = useState(false);
   const [error, setError] = useState("");
@@ -459,7 +455,7 @@ export function StakeholderWorkspace({
       );
       await flush();
       setNotice(
-        `${selected.length} attachment${selected.length === 1 ? "" : "s"} saved to this browser.`,
+        `${selected.length} attachment${selected.length === 1 ? "" : "s"} saved.`,
       );
     });
   }
@@ -471,12 +467,15 @@ export function StakeholderWorkspace({
     setFilter("all");
     setPanel(null);
   }
-  function openPanel(value: "journey" | "export" | "backup") {
+  function openPanel(value: "journey" | "export" | "backup" | "library") {
     setPanel(panel === value ? null : value);
     setEditingId(null);
     setError("");
-    if (value === "journey" && workspace)
+    if (value === "journey" && workspace) {
       setStages(workspace.stages.map((stage) => ({ ...stage })));
+      setTeamName(workspace.team);
+      setProjectName(workspace.project);
+    }
   }
   const readyCount =
     workspace?.stakeholders.filter((item) => item.status === "complete")
@@ -507,24 +506,18 @@ export function StakeholderWorkspace({
       data-stakebridge=""
       ref={root}
       tabIndex={-1}
-      aria-label="StakeBridge local workspace"
+      aria-label="StakeBridge workspace"
       onKeyDown={(event) => event.stopPropagation()}
       onWheel={(event) => event.stopPropagation()}
       onTouchStart={(event) => event.stopPropagation()}
       onTouchMove={(event) => event.stopPropagation()}
     >
       <header className="sb-header">
-        <div className="sb-brand">
-          <span className="sb-brand-mark">
-            <Icon name="bridge" />
-          </span>
-          <div>
-            <b>StakeBridge</b>
-            <span>Stakeholder interview workspace</span>
-          </div>
-        </div>
+        <a href="#handbook" className="sb-help-link">
+          Handbook ↗
+        </a>
         <span className="sb-local-badge">
-          <span className="sb-status-dot" /> Browser-local edition
+          <span className="sb-status-dot" /> Your workspace
         </span>
       </header>
       <input
@@ -591,8 +584,8 @@ export function StakeholderWorkspace({
           </p>
           {workspace && (
             <p>
-              This replaces the workspace in this browser. Download a backup of
-              your current work first if you want to keep it.
+              This replaces your current workspace. Download a backup of your
+              current work first if you want to keep it.
             </p>
           )}
           <div className="sb-actions">
@@ -650,11 +643,11 @@ export function StakeholderWorkspace({
       )}
       {loading ? (
         <p className="sb-loading" role="status">
-          Opening your local workspace…
+          Opening your workspace…
         </p>
       ) : loadError ? (
         <div className="sb-loading">
-          <h2>Browser storage could not be opened</h2>
+          <h2>Your workspace couldn’t be opened</h2>
           <p>{loadError}</p>
           <button
             type="button"
@@ -691,7 +684,7 @@ export function StakeholderWorkspace({
             <div className="sb-toolbar">
               <span className="sb-save-state" role="status">
                 {saveState === "saved"
-                  ? "✓ Saved locally"
+                  ? "✓ Saved"
                   : saveState === "saving"
                     ? "Saving…"
                     : "Not saved"}
@@ -730,15 +723,8 @@ export function StakeholderWorkspace({
             ))}
           </div>
           {panel === "backup" && (
-            <Panel
-              title="Keep your work with you"
-              onClose={() => setPanel(null)}
-            >
-              <p>
-                A backup includes your journey, all interview notes and original
-                attachments. Restore it in another browser or keep a copy
-                outside this device.
-              </p>
+            <Panel title="Backup & restore" onClose={() => setPanel(null)}>
+              <p>Includes all notes, stages and original attachments.</p>
               <div className="sb-actions">
                 <button
                   type="button"
@@ -771,9 +757,7 @@ export function StakeholderWorkspace({
                 </button>
               </div>
               <p className="sb-small">
-                This version saves to this browser, without account login or
-                cloud sync. Clearing this site’s browser data removes its local
-                workspace. Only add material you have permission to keep.
+                Back up before clearing browser data or changing devices.
               </p>
             </Panel>
           )}
@@ -783,9 +767,7 @@ export function StakeholderWorkspace({
               onClose={() => setPanel(null)}
             >
               <p>
-                Word heading 1: your journey stages. Heading 2: stakeholders,
-                ordered by interview date. Heading 3: Rationale, Stakeholder
-                interview and Integrate.
+                Stages → stakeholders by date → Rationale, Interview, Integrate.
               </p>
               <label className="sb-checkbox">
                 <input
@@ -796,8 +778,7 @@ export function StakeholderWorkspace({
                 Include drafts, clearly marked in the report
               </label>
               <p className="sb-small">
-                Notes and attachment names are included. Download a full backup
-                to keep the original recordings and documents.
+                Original files are kept in the full backup.
               </p>
               <button
                 type="button"
@@ -826,14 +807,28 @@ export function StakeholderWorkspace({
             </Panel>
           )}
           {panel === "journey" && (
-            <Panel
-              title="Edit your product journey"
-              onClose={() => setPanel(null)}
-            >
-              <p>
-                Rename or reorder stages. Move a stage’s stakeholders to another
-                stage before removing it.
-              </p>
+            <Panel title="Project settings" onClose={() => setPanel(null)}>
+              <div className="sb-fields sb-details-grid">
+                <label htmlFor={`${prefix}-edit-team`}>
+                  Team name
+                  <input
+                    id={`${prefix}-edit-team`}
+                    value={teamName}
+                    maxLength={120}
+                    onChange={(event) => setTeamName(event.target.value)}
+                  />
+                </label>
+                <label htmlFor={`${prefix}-edit-project`}>
+                  Project name
+                  <input
+                    id={`${prefix}-edit-project`}
+                    value={projectName}
+                    maxLength={160}
+                    onChange={(event) => setProjectName(event.target.value)}
+                  />
+                </label>
+              </div>
+              <p>Rename or reorder your stages.</p>
               <StageFields
                 stages={stages}
                 onChange={setStages}
@@ -851,20 +846,24 @@ export function StakeholderWorkspace({
                       setError(problem);
                       return;
                     }
+                    if (!teamName.trim() || !projectName.trim()) {
+                      setError("Enter a team and project name.");
+                      return;
+                    }
                     change((previous) => ({
                       ...previous,
+                      team: teamName.trim(),
+                      project: projectName.trim(),
                       stages: stages.map((stage) => ({
                         ...stage,
                         name: stage.name.trim(),
                       })),
                     }));
                     setPanel(null);
-                    setNotice(
-                      "Product journey updated. Interview records are preserved.",
-                    );
+                    setNotice("Project settings saved.");
                   }}
                 >
-                  Save journey
+                  Save settings
                 </button>
                 <button
                   type="button"
@@ -909,7 +908,7 @@ export function StakeholderWorkspace({
                 className="sb-text-button sb-edit-journey"
                 onClick={() => openPanel("journey")}
               >
-                Edit journey ↗
+                Project settings ↗
               </button>
               <div className="sb-sidebar-summary">
                 <b>
@@ -927,7 +926,6 @@ export function StakeholderWorkspace({
                     }}
                   />
                 </div>
-                <small>Rationale · Interview · Integration</small>
               </div>
             </aside>
             <div
@@ -957,13 +955,9 @@ export function StakeholderWorkspace({
                   <h2 className="sb-editor-heading">
                     {editing.name.trim() || "New stakeholder record"}
                   </h2>
-                  <p className="sb-small">
-                    Start with what you know. Your draft saves automatically as
-                    you write.
-                  </p>
                   {editing.source && (
                     <div className="sb-source-note">
-                      Planning reference:{" "}
+                      Library reference:{" "}
                       <a
                         href={editing.source.url}
                         target="_blank"
@@ -971,9 +965,7 @@ export function StakeholderWorkspace({
                       >
                         {editing.source.entryId}
                       </a>{" "}
-                      · revision {editing.source.revision}. Record your own
-                      interview and integration below; the source team’s
-                      outcomes are not your results.
+                      · version {editing.source.revision}
                     </div>
                   )}
                   <div className="sb-fields sb-details-grid">
@@ -995,7 +987,7 @@ export function StakeholderWorkspace({
                         id={`${prefix}-role`}
                         maxLength={200}
                         value={editing.role}
-                        placeholder="e.g. researcher · university"
+                        placeholder="e.g. user representative · community group"
                         onChange={(event) =>
                           updateItem({ role: event.target.value })
                         }
@@ -1003,15 +995,11 @@ export function StakeholderWorkspace({
                     </label>
                     <label htmlFor={`${prefix}-date`}>
                       Interview date
-                      <input
+                      <InterviewDate
+                        key={editing.id}
                         id={`${prefix}-date`}
-                        type="date"
-                        min="1900-01-01"
-                        max="9999-12-31"
                         value={editing.date}
-                        onChange={(event) =>
-                          updateItem({ date: event.target.value })
-                        }
+                        onChange={(date) => updateItem({ date })}
                       />
                     </label>
                     <label htmlFor={`${prefix}-stage`}>
@@ -1077,7 +1065,7 @@ export function StakeholderWorkspace({
                           className={`sb-upload${busy ? " is-disabled" : ""}`}
                         >
                           <Icon name="plus" />
-                          Add audio, video or documents
+                          Add files
                           <input
                             className="sb-sr-only"
                             type="file"
@@ -1236,28 +1224,53 @@ export function StakeholderWorkspace({
                         ).padStart(2, "0")}
                       </span>
                       <h2>{activeStage?.name}</h2>
-                      <p>
-                        Bring the right perspectives into this part of your
-                        journey.
-                      </p>
                     </div>
-                    <button
-                      type="button"
-                      className="sb-button sb-button-primary"
-                      onClick={() => {
-                        if (!activeStage) return;
-                        const item = newStakeholder(activeStage.id);
-                        change((previous) => ({
-                          ...previous,
-                          stakeholders: [...previous.stakeholders, item],
-                        }));
-                        openEditor(item.id);
-                      }}
-                    >
-                      <Icon name="plus" />
-                      Add stakeholder
-                    </button>
+                    <div className="sb-add-actions">
+                      <button
+                        type="button"
+                        className="sb-button sb-button-outline"
+                        aria-expanded={panel === "library"}
+                        onClick={() => openPanel("library")}
+                      >
+                        <Icon name="search" /> Add from library
+                      </button>
+                      <button
+                        type="button"
+                        className="sb-button sb-button-primary"
+                        onClick={() => {
+                          if (!activeStage) return;
+                          const item = newStakeholder(activeStage.id);
+                          change((previous) => ({
+                            ...previous,
+                            stakeholders: [...previous.stakeholders, item],
+                          }));
+                          openEditor(item.id);
+                        }}
+                      >
+                        <Icon name="plus" />
+                        Add stakeholder
+                      </button>
+                    </div>
                   </div>
+                  {panel === "library" && activeStage && (
+                    <Panel
+                      title={`Add to ${activeStage.name}`}
+                      onClose={() => setPanel(null)}
+                    >
+                      <LibraryPicker
+                        key={activeStage.id}
+                        registry={registry}
+                        error={registryError}
+                        workspace={workspace}
+                        stageId={activeStage.id}
+                        onChoose={(entry) => {
+                          const id = onAddFromLibrary(entry, activeStage.id);
+                          setSelectedStage(activeStage.id);
+                          openEditor(id);
+                        }}
+                      />
+                    </Panel>
+                  )}
                   <div className="sb-search-row">
                     <label className="sb-search">
                       <Icon name="search" />
@@ -1355,14 +1368,8 @@ export function StakeholderWorkspace({
                       <p>
                         {query || filter !== "all"
                           ? "Try a different search or status filter."
-                          : "Add the people who can help you understand this stage. Record why you reached out, what you learned and what changed."}
+                          : "Add your first stakeholder to get started."}
                       </p>
-                      {!query && filter === "all" && (
-                        <div className="sb-empty-method">
-                          Rationale <span>→</span> Interview <span>→</span>{" "}
-                          Integrate
-                        </div>
-                      )}
                     </div>
                   )}
                 </>
@@ -1371,10 +1378,9 @@ export function StakeholderWorkspace({
           </div>
           <footer className="sb-footer">
             <span>
-              <span className="sb-status-dot" /> Private to this browser ·
-              download a backup to move devices
+              <span className="sb-status-dot" /> Saved on this device
             </span>
-            <span>Built around the product journey</span>
+            <a href="#handbook/export">Backup guide ↗</a>
           </footer>
         </>
       )}

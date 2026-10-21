@@ -12,7 +12,9 @@
 
 ## Entry fields
 
-The TypeScript contract and runtime validator are in `src/registry/schema.ts`. Every entry includes its ID, revision, kind, title, role, organisation, domain, stages, tags, summary, rationale, interview text (or authored questions), integration, limitations, contributor, update date, HTTPS source, members, contact permission and experience records.
+The TypeScript contract and runtime validator are in `src/registry/schema.ts`. Every entry includes its ID, revision, kind, title, role, organisation, domain (project field), stages, roleTags, tags (keywords), summary, rationale, interview text (or authored questions), integration, limitations, contributor, update date, HTTPS source, members, contact permission and experience records.
+
+`stages` and `roleTags` contain one or more distinct, non-blank values; `tags` contains optional keywords. Use the suggestions in `src/journey.ts` and `src/registry/taxonomy.ts` when they fit, while accepting custom values for other projects. `role` remains the specific position or perspective, distinct from the searchable `roleTags` categories. Older records without `roleTags` remain readable; assign them during review. `sourceStage` retains an imported source’s original category for attribution.
 
 `experiences` is an array of `{ team, year, summary, source }`. A role guide may have an empty experience array. A team-reported account is not an independent scientific verification; retain the context and source.
 

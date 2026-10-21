@@ -1,5 +1,5 @@
 .sb-workspace {
-  --sb-ink: #193d56;
+  --sb-ink: #223c81;
   --sb-muted: #677a85;
   --sb-line: #dfe7e9;
   --sb-accent: #cbe9bf;
@@ -12,7 +12,7 @@
   font-size: 14px;
   line-height: 1.5;
   scroll-margin-top: 20px;
-  box-shadow: 0 12px 40px #193d5607;
+  box-shadow: 0 12px 40px #223c8107;
 }
 .sb-workspace *,
 .sb-workspace *::before,
@@ -61,7 +61,7 @@
 }
 .sb-workspace .sb-small {
   color: var(--sb-muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
 }
 .sb-sr-only {
@@ -110,7 +110,7 @@
 .sb-brand div > span {
   display: block;
   color: var(--sb-muted);
-  font-size: 11px;
+  font-size: 14px;
   margin-top: 3px;
 }
 .sb-local-badge {
@@ -121,21 +121,21 @@
   border: 1px solid var(--sb-line);
   border-radius: 30px;
   color: var(--sb-muted);
-  font-size: 11px;
+  font-size: 14px;
   white-space: nowrap;
 }
 .sb-status-dot {
   display: inline-block;
   width: 6px;
   height: 6px;
-  background: #4f8760;
+  background: #4b75b3;
   border-radius: 50%;
   flex-shrink: 0;
 }
 .sb-eyebrow {
   display: block;
   color: var(--sb-muted);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 650;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -151,7 +151,7 @@
   border-radius: 8px;
   border: 1px solid transparent;
   font-weight: 550;
-  font-size: 12px !important;
+  font-size: 14px !important;
   line-height: 1.3;
   text-decoration: none;
   transition:
@@ -184,7 +184,7 @@
   padding: 5px 0;
   background: transparent;
   border: none;
-  font-size: 12px !important;
+  font-size: 14px !important;
   color: #396c7b;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -219,18 +219,18 @@
 }
 .sb-setup-story {
   padding: 55px 40px;
-  background: #edf3f1;
+  background: #eaf3ff;
   border-right: 1px solid var(--sb-line);
 }
 .sb-display {
-  font-family: Georgia, serif;
+  font-family: inherit;
   font-size: clamp(32px, 3.8vw, 48px);
   line-height: 1.14;
   letter-spacing: -1.8px;
   margin: 25px 0;
 }
 .sb-display em {
-  color: #648362;
+  color: #4079ce;
 }
 .sb-method {
   margin: 32px 0;
@@ -243,24 +243,24 @@
   gap: 14px;
 }
 .sb-method > div > span {
-  font-family: ui-monospace, monospace;
-  color: #748b78;
+  font-family: inherit;
+  color: #526680;
   padding-top: 1px;
-  font-size: 11px;
+  font-size: 14px;
 }
 .sb-method b {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
 }
 .sb-method small {
   display: block;
   color: var(--sb-muted);
-  font-size: 11px;
+  font-size: 14px;
   margin-top: 3px;
 }
 .sb-local-note {
   color: var(--sb-muted);
-  font-size: 10px;
+  font-size: 14px;
   display: flex;
   gap: 7px;
   align-items: center;
@@ -271,7 +271,7 @@
 .sb-setup-progress {
   display: flex;
   gap: 20px;
-  font-size: 11px;
+  font-size: 14px;
   color: #9ba7ac;
   margin: 0 0 36px;
 }
@@ -290,7 +290,7 @@
 .sb-fields label {
   display: grid;
   gap: 7px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 .sb-workspace input:not([type="checkbox"]):not([type="file"]),
@@ -303,7 +303,7 @@
   border-radius: 7px;
   min-width: 0;
   width: 100%;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.45;
 }
 .sb-workspace input::placeholder,
@@ -332,8 +332,8 @@
   flex: 1;
 }
 .sb-step-number {
-  font-family: ui-monospace, monospace;
-  font-size: 11px;
+  font-family: inherit;
+  font-size: 14px;
   color: #7d959b;
   width: 25px;
   flex-shrink: 0;
@@ -364,8 +364,8 @@
   gap: 8px;
 }
 .sb-save-state {
-  font-size: 10px;
-  color: #577e61;
+  font-size: 14px;
+  color: #3d659d;
   white-space: nowrap;
   margin-right: 8px;
 }
@@ -386,17 +386,17 @@
   gap: 8px;
   align-items: center;
   padding: 7px;
-  font-size: 10px;
+  font-size: 14px;
   color: #7b8d94;
   white-space: nowrap;
 }
 .sb-journey-strip button > span {
-  font-family: ui-monospace, monospace;
-  font-size: 9px;
+  font-family: inherit;
+  font-size: 14px;
 }
 .sb-journey-strip button.is-active {
-  color: #305f47;
-  background: #e4efdf;
+  color: #223c81;
+  background: #e2eeff;
 }
 .sb-journey-strip svg {
   width: 12px;
@@ -410,7 +410,7 @@
 }
 .sb-sidebar {
   padding: 27px 16px;
-  background: #f7f9f8;
+  background: #f4f8ff;
   border-right: 1px solid var(--sb-line);
 }
 .sb-sidebar > .sb-eyebrow {
@@ -431,7 +431,7 @@
   border-radius: 7px;
   background: none;
   color: #657881;
-  font-size: 12px;
+  font-size: 14px;
 }
 .sb-sidebar nav button > span:nth-child(2) {
   flex: 1;
@@ -441,19 +441,19 @@
   color: var(--sb-ink);
   background: #fff;
   border-color: var(--sb-line);
-  box-shadow: 0 2px 6px #193d5606;
+  box-shadow: 0 2px 6px #223c8106;
   font-weight: 600;
 }
 .sb-nav-number {
-  font-family: ui-monospace, monospace;
-  font-size: 10px;
+  font-family: inherit;
+  font-size: 14px;
   color: #94a4aa;
 }
 .sb-count {
-  background: #edf1ef;
+  background: #eaf2ff;
   border-radius: 5px;
   padding: 1px 6px;
-  font-size: 10px;
+  font-size: 14px;
 }
 .sb-edit-journey {
   margin: 14px 10px 0;
@@ -462,7 +462,7 @@
   display: grid;
   gap: 8px;
   margin: 45px 10px 0;
-  font-size: 10px;
+  font-size: 14px;
   color: var(--sb-muted);
 }
 .sb-sidebar-summary > b {
@@ -471,23 +471,23 @@
   font-weight: 500;
 }
 .sb-sidebar-summary b span {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--sb-muted);
 }
 .sb-sidebar-summary small {
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.7;
 }
 .sb-progress {
   height: 4px;
   border-radius: 4px;
-  background: #dfe7e0;
+  background: #dce8fa;
   overflow: hidden;
 }
 .sb-progress span {
   height: 100%;
   display: block;
-  background: #84ad76;
+  background: #6398eb;
   transition: width 0.2s;
 }
 .sb-main {
@@ -504,7 +504,7 @@
   margin-bottom: 8px;
 }
 .sb-main-title p {
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 .sb-main-title > .sb-button {
   flex-shrink: 0;
@@ -536,7 +536,7 @@
 }
 .sb-search-row select {
   height: 42px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .sb-empty {
   padding: 45px 20px;
@@ -544,7 +544,7 @@
   border: 1px dashed #d1ddda;
   border-radius: 12px;
   text-align: center;
-  background: #fcfdfb;
+  background: #f7faff;
 }
 .sb-empty-icon {
   display: grid;
@@ -552,8 +552,8 @@
   width: 54px;
   height: 54px;
   margin: 0 auto 20px;
-  color: #678d64;
-  background: #eaf2e6;
+  color: #486fac;
+  background: #e7f0ff;
   border-radius: 50%;
 }
 .sb-empty-icon svg {
@@ -566,18 +566,18 @@
 .sb-empty p {
   max-width: 400px;
   margin: 0 auto !important;
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 .sb-empty-method {
   display: flex;
   gap: 15px;
   justify-content: center;
-  color: #65866b;
-  font-size: 10px;
+  color: #526680;
+  font-size: 14px;
   margin-top: 25px;
 }
 .sb-empty-method span {
-  color: #b7c6b9;
+  color: #91b3e4;
 }
 .sb-record-grid {
   display: grid;
@@ -600,7 +600,7 @@
 }
 .sb-record-card:hover {
   border-color: #8eb1aa;
-  box-shadow: 0 4px 18px #193d5608;
+  box-shadow: 0 4px 18px #223c8108;
 }
 .sb-card-top {
   display: flex;
@@ -611,25 +611,25 @@
 .sb-avatar {
   width: 36px;
   height: 36px;
-  background: #edf2e8;
-  color: #68825a;
+  background: #e7f0ff;
+  color: #486fac;
   border-radius: 9px;
   display: grid;
   place-items: center;
-  font-family: Georgia, serif;
+  font-family: inherit;
   font-size: 18px;
 }
 .sb-pill {
   display: inline-block;
-  font-size: 10px;
+  font-size: 14px;
   padding: 3px 8px;
   border-radius: 4px;
   color: #997438;
   background: #faf2e2;
 }
 .sb-pill.is-complete {
-  color: #4c744d;
-  background: #e8f3e5;
+  color: #365f99;
+  background: #e7f0ff;
 }
 .sb-record-card > b {
   font-size: 16px;
@@ -638,12 +638,12 @@
 }
 .sb-card-role {
   color: var(--sb-muted);
-  font-size: 11px;
+  font-size: 14px;
   margin-top: 4px;
   overflow-wrap: anywhere;
 }
 .sb-card-date {
-  font-size: 11px;
+  font-size: 14px;
   color: #819198;
   margin: 15px 0;
 }
@@ -651,18 +651,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 9px;
+  font-size: 14px;
   color: #98a5a9;
   margin-top: auto;
 }
 .sb-card-sections .is-filled {
-  color: #5d865b;
+  color: #3d659d;
 }
 .sb-card-bottom {
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  font-size: 10px;
+  font-size: 14px;
   border-top: 1px solid #eef1ee;
   padding-top: 12px;
   margin-top: 15px;
@@ -670,7 +670,7 @@
   color: var(--sb-muted);
 }
 .sb-card-bottom span:last-child {
-  color: #417363;
+  color: #3d659d;
 }
 .sb-editor-top {
   display: flex;
@@ -693,7 +693,7 @@
   margin: 5px 0;
   border-bottom: 1px solid var(--sb-line);
   color: #9ba5aa;
-  font-size: 10px;
+  font-size: 14px;
 }
 .sb-section-progress > span {
   display: flex;
@@ -707,7 +707,7 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 8px;
+  font-size: 14px;
   font-style: normal;
 }
 .sb-section-progress i svg {
@@ -715,11 +715,11 @@
   height: 12px;
 }
 .sb-section-progress .is-filled {
-  color: #5a8057;
+  color: #365f99;
 }
 .sb-section-progress .is-filled i {
-  background: #e8f0e3;
-  border-color: #e8f0e3;
+  background: #e7f0ff;
+  border-color: #e7f0ff;
 }
 .sb-reflection {
   border: 0;
@@ -738,13 +738,13 @@
   margin: 0 0 10px;
 }
 .sb-reflection legend > span {
-  font-family: ui-monospace, monospace;
-  font-size: 10px;
+  font-family: inherit;
+  font-size: 14px;
   color: #8b9d92;
 }
 .sb-reflection > label {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 10px;
   color: var(--sb-muted);
 }
@@ -761,8 +761,8 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 11px;
-  color: #4b7b70;
+  font-size: 14px;
+  color: #365f99;
   cursor: pointer;
 }
 .sb-upload:focus-within {
@@ -782,8 +782,8 @@
   align-items: center;
   gap: 9px;
   padding: 10px;
-  background: #f7faf7;
-  border: 1px solid #e6ece5;
+  background: #f5f9ff;
+  border: 1px solid #dce8fa;
   border-radius: 6px;
   margin-top: 7px;
   min-width: 0;
@@ -795,16 +795,16 @@
 .sb-file b {
   display: block;
   overflow-wrap: anywhere;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
 }
 .sb-file small {
   display: block;
   color: var(--sb-muted);
-  font-size: 9px;
+  font-size: 14px;
 }
 .sb-file > svg {
-  color: #7d9584;
+  color: #526680;
 }
 .sb-file .sb-icon-button {
   width: 27px;
@@ -825,12 +825,12 @@
   padding: 22px 0;
 }
 .sb-editor-footer b {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
 }
 .sb-editor-footer p {
   margin: 4px 0 0 !important;
-  font-size: 10px !important;
+  font-size: 14px !important;
 }
 .sb-editor-footer > button {
   flex-shrink: 0;
@@ -846,7 +846,7 @@
   border-radius: 8px;
 }
 .sb-delete-confirm p {
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 .sb-delete-confirm .sb-actions {
   margin-bottom: 0;
@@ -854,7 +854,7 @@
 .sb-panel {
   padding: 25px 30px;
   border-bottom: 1px solid var(--sb-line);
-  background: #f1f6f2;
+  background: #edf4ff;
 }
 .sb-panel .sb-stage-fields {
   max-width: 650px;
@@ -870,17 +870,17 @@
 }
 .sb-panel > p {
   max-width: 760px;
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
 .sb-checkbox {
   display: flex;
   gap: 9px;
   align-items: center;
   margin-bottom: 12px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .sb-checkbox input {
-  accent-color: #507256;
+  accent-color: #3d659d;
 }
 .sb-alert {
   display: flex;
@@ -888,7 +888,7 @@
   gap: 10px;
   align-items: center;
   padding: 12px 25px;
-  font-size: 12px;
+  font-size: 14px;
   border-bottom: 1px solid var(--sb-line);
 }
 .sb-error {
@@ -896,8 +896,8 @@
   background: #fff1e9;
 }
 .sb-notice {
-  color: #426947;
-  background: #f0f8ec;
+  color: #365f99;
+  background: #eaf3ff;
 }
 .sb-footer {
   display: flex;
@@ -907,8 +907,8 @@
   padding: 15px 25px;
   border-top: 1px solid var(--sb-line);
   color: #849299;
-  background: #fcfdfb;
-  font-size: 9px;
+  background: #f7faff;
+  font-size: 14px;
 }
 .sb-footer > span:first-child {
   display: inline-flex;
@@ -938,7 +938,7 @@
     gap: 7px;
   }
   .sb-method small {
-    font-size: 10px;
+    font-size: 14px;
   }
   .sb-project-bar {
     align-items: flex-start;
@@ -976,7 +976,7 @@
     font-size: 21px;
   }
   .sb-brand div > span {
-    font-size: 10px;
+    font-size: 14px;
   }
   .sb-setup-story,
   .sb-setup-form {
@@ -1051,14 +1051,14 @@
   }
   .sb-section-progress {
     gap: 11px;
-    font-size: 9px;
+    font-size: 14px;
   }
   .sb-stage-row {
     gap: 3px;
   }
   .sb-stage-row input {
     padding: 10px 7px !important;
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
   .sb-step-number {
     width: 18px;

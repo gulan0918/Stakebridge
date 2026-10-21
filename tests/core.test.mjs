@@ -17,6 +17,12 @@ import {
 } from "../src/components/stakebridge/storage.ts";
 import { exportWord } from "../src/components/stakebridge/word.ts";
 import { validateRegistry, openToContact } from "../src/registry/schema.ts";
+import { splitTags } from "../src/registry/taxonomy.ts";
+import {
+  JOURNEY_STAGES,
+  standardStageName,
+  upgradeDefaultStages,
+} from "../src/journey.ts";
 
 const seed = JSON.parse(
   await readFile(
@@ -53,6 +59,26 @@ function fixture() {
 
 test("registry entries, sources and collection references are valid", () =>
   validateRegistry(seed));
+test("project-agnostic categories accept custom labels and reject malformed tags", () => {
+  assert.deepEqual(
+    splitTags(" Teachers， accessibility,Teachers\nco-design , "),
+    ["Teachers", "accessibility", "co-design"],
+  );
+  const custom = structuredClone(seed);
+  custom.entries[0].domain = "Civic education";
+  custom.entries[0].stages = ["Students", "Classroom delivery"];
+  custom.entries[0].roleTags = ["Teachers", "Community organisers"];
+  custom.entries[0].tags = [];
+  validateRegistry(custom);
+  for (const key of ["stages", "roleTags", "tags"]) {
+    const malformed = structuredClone(custom);
+    malformed.entries[0][key] = ["Teachers", "Teachers"];
+    assert.throws(() => validateRegistry(malformed), /invalid/);
+    malformed.entries[0][key] = [" "];
+    assert.throws(() => validateRegistry(malformed), /invalid/);
+  }
+  assert.ok(seed.entries.every((entry) => entry.roleTags.length > 0));
+});
 test("duplicate IDs and missing pathway members are rejected", () => {
   const duplicate = structuredClone(seed);
   duplicate.entries.push(duplicate.entries[0]);
@@ -81,8 +107,8 @@ test("public contact links retain provenance and reject unsafe URLs", () => {
       (item) => item.interview?.length && item.source.includes("/-/blob/"),
     ),
   );
-  const patients = seed.entries.filter((item) =>
-    item.stages.includes("Patient"),
+  const patients = seed.entries.filter(
+    (item) => item.contactReview?.status === "not_sought",
   );
   assert.equal(patients.length, 3);
   assert.ok(
@@ -110,6 +136,36 @@ test("an interview cannot imply consent, and expired permission is not discovera
   validateRegistry(invalid);
   assert.equal(openToContact(invalid.entries[0], "2026-10-21"), false);
   assert.equal(openToContact(invalid.entries[0], "2026-09-21"), true);
+});
+test("general project stages upgrade the old starter without changing IDs or custom maps", () => {
+  assert.deepEqual(
+    defaultStages().map((stage) => stage.name),
+    [...JOURNEY_STAGES],
+  );
+  assert.equal(defaultStages()[0].name, "Users");
+  const old = [
+    "Patient",
+    "R&D",
+    "Manufacturing",
+    "Market access & entrepreneurship",
+    "Treatment",
+    "Rehabilitation",
+  ].map((name, index) => ({ id: `stage-${index}`, name }));
+  const next = upgradeDefaultStages(old);
+  assert.deepEqual(
+    next.map((stage) => stage.name),
+    [...JOURNEY_STAGES],
+  );
+  assert.deepEqual(
+    next.map((stage) => stage.id),
+    old.map((stage) => stage.id),
+  );
+  assert.equal(old[0].name, "Patient");
+  const custom = old.map((stage, index) =>
+    index === 0 ? { ...stage, name: "Teachers" } : stage,
+  );
+  assert.equal(upgradeDefaultStages(custom), custom);
+  assert.equal(standardStageName("R&D"), JOURNEY_STAGES[1]);
 });
 test("workspace imports reject dangling stages, impossible dates and false completion", () => {
   validateWorkspace(fixture());

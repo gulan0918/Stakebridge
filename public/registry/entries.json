@@ -4,15 +4,22 @@
   "entries": [
     {
       "id": "SB_000006",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Patient interview — competitive tennis player",
       "topic": "cartilage injury in a competitive tennis player",
       "role": "Patient perspective",
       "organisation": "",
-      "domain": "Biomedical materials",
-      "stages": ["Patient"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Users & beneficiaries"
+      ],
+      "stages": [
+        "Users"
+      ],
+      "sourceStage": "Patient",
       "tags": [
+        "Biomedical materials",
         "cartilage injury in a competitive tennis player",
         "Patient perspective"
       ],
@@ -51,15 +58,25 @@
     },
     {
       "id": "SB_000007",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Patient interviews — post-operative experiences",
       "topic": "the invisible pain after surgery",
       "role": "Patient perspective",
       "organisation": "",
-      "domain": "Biomedical materials",
-      "stages": ["Patient"],
-      "tags": ["the invisible pain after surgery", "Patient perspective"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Users & beneficiaries"
+      ],
+      "stages": [
+        "Users"
+      ],
+      "sourceStage": "Patient",
+      "tags": [
+        "Biomedical materials",
+        "the invisible pain after surgery",
+        "Patient perspective"
+      ],
       "summary": "The three post-operative patients described persistent pain, limited function and the extra burden of having their invisible pain dismissed. The interviews moved us to address the psychological and social side of treatment through science videos, public lectures and rehabilitation discussions with medical students.",
       "rationale": "We met one participant at the iGEM East China meet-up and found one participant and another participant through a Xiaohongshu discussion thread; all three had direct experience of post-operative cartilage injury.",
       "interview": "one participant had ACL reconstruction; her doctors said the artificial ligament recovers faster but is harder and keeps wearing the cartilage, with no good answer for the resulting damage. one participant developed osteoarthritis after patellar surgery; follow-up visits concluded that her discomfort was normal, and her rehabilitation doctor said the persistent friction caused by the protruding bone position is mechanical and irreversible, and that further surgery could cause other problems. another participant's wrist surgery affected her function even more. They described anxiety, irritability and self-blame because the joint is internal and leaves no visible scar for others to see.",
@@ -95,15 +112,25 @@
     },
     {
       "id": "SB_000008",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Patient interview — rural access to care",
       "topic": "cartilage care in a remote village",
       "role": "Patient perspective",
       "organisation": "",
-      "domain": "Biomedical materials",
-      "stages": ["Patient"],
-      "tags": ["cartilage care in a remote village", "Patient perspective"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Users & beneficiaries"
+      ],
+      "stages": [
+        "Users"
+      ],
+      "sourceStage": "Patient",
+      "tags": [
+        "Biomedical materials",
+        "cartilage care in a remote village",
+        "Patient perspective"
+      ],
       "summary": "The Yantan village visit revealed long travel distances to care, chronic joint problems managed with painkillers and low awareness of cartilage health. We wrote these observations on rural access into our survey report and pushed for community cartilage screening and education.",
       "rationale": "To understand regional differences in care, we visited Yantan village — a small, seasonal-tourism village with many left-behind elderly people and limited transport. We spent most time with an elderly man who lives by manual labour.",
       "interview": "He has had arthritis for more than five years and still suffers from it; he manages it with local herbal medicine and painkillers. He described repeated trips to hospitals and said the nearest one is an hour's drive; township hospitals can handle acute problems but have little for chronic disease — “let alone a small illness like mine.”",
@@ -139,15 +166,22 @@
     },
     {
       "id": "SB_000005",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Dr. Huang Jun",
       "topic": "sports-medicine advice from a national team doctor",
       "role": "Sports-medicine clinician",
       "organisation": "Zhejiang Provincial Sports Hospital",
-      "domain": "Biomedical materials",
-      "stages": ["Treatment"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Implementers & operators"
+      ],
+      "stages": [
+        "Use"
+      ],
+      "sourceStage": "Treatment",
       "tags": [
+        "Biomedical materials",
         "sports-medicine advice from a national team doctor",
         "Clinical practice"
       ],
@@ -192,15 +226,25 @@
     },
     {
       "id": "SB_000002",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Dr. Qiu Xiaoming",
       "topic": "tunable SELP for different joints",
       "role": "Orthopaedic clinician",
       "organisation": "Sir Run Run Shaw Hospital, Hangzhou",
-      "domain": "Biomedical materials",
-      "stages": ["Treatment"],
-      "tags": ["tunable SELP for different joints", "Clinical practice"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Implementers & operators"
+      ],
+      "stages": [
+        "Use"
+      ],
+      "sourceStage": "Treatment",
+      "tags": [
+        "Biomedical materials",
+        "tunable SELP for different joints",
+        "Clinical practice"
+      ],
       "summary": "Dr. Qiu Xiaoming pointed out that different joints bear different loads and need tunable strength. The interview led us to tune SELP through the 2KY repeat number and to match different defects with modelling.",
       "rationale": "The first step of NEST was to choose a filler that meets the complex requirements of cartilage repair — filling the defect directly and relieving pain immediately. Dr. Qiu Xiaoming is an orthopaedic doctor at Sir Run Run Shaw Hospital in Hangzhou with extensive clinical experience and academic work, so we visited him.",
       "interview": "We presented the first SELP design — a single fixed set of 2KY5, 2KY10 and 2KY16 proteins. He said that the elbow, knee and other joints bear different loads and need different strengths, and that a single-strength material could not achieve our goal of treating all hyaline cartilage defects. We proposed tuning the 2KY repeat number through sequence design to change the material's strength and toughness; he agreed.",
@@ -242,15 +286,22 @@
     },
     {
       "id": "SB_000009",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Dr. Li Zhiguo",
       "topic": "the diagnostic gap in early cartilage injury",
       "role": "Orthopaedic clinician",
       "organisation": "Beijing Tongren Hospital, Mentougou campus (as recorded in IHP)",
-      "domain": "Biomedical materials",
-      "stages": ["Treatment"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Implementers & operators"
+      ],
+      "stages": [
+        "Use"
+      ],
+      "sourceStage": "Treatment",
       "tags": [
+        "Biomedical materials",
         "the diagnostic gap in early cartilage injury",
         "Clinical practice"
       ],
@@ -295,15 +346,22 @@
     },
     {
       "id": "SB_000010",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Dr. Ren Bo",
       "topic": "age-related immunity and material complexity",
       "role": "Sports-medicine clinician",
       "organisation": "Xi’an Honghui Hospital",
-      "domain": "Biomedical materials",
-      "stages": ["Treatment"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Implementers & operators"
+      ],
+      "stages": [
+        "Use"
+      ],
+      "sourceStage": "Treatment",
       "tags": [
+        "Biomedical materials",
         "age-related immunity and material complexity",
         "Clinical practice"
       ],
@@ -348,15 +406,22 @@
     },
     {
       "id": "SB_000011",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Dr. Zhang Yumei",
       "topic": "where the material fits alongside rehabilitation",
       "role": "Rehabilitation clinician",
       "organisation": "First Affiliated Hospital of Nanjing Medical University",
-      "domain": "Biomedical materials",
-      "stages": ["Treatment"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Implementers & operators"
+      ],
+      "stages": [
+        "Use"
+      ],
+      "sourceStage": "Treatment",
       "tags": [
+        "Biomedical materials",
         "where the material fits alongside rehabilitation",
         "Clinical practice"
       ],
@@ -401,15 +466,25 @@
     },
     {
       "id": "SB_000012",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Nurse Xue Han and her nursing team",
       "topic": "redesigning the hardware around the ward",
       "role": "Nursing team",
       "organisation": "254 Hospital (as recorded in IHP)",
-      "domain": "Biomedical materials",
-      "stages": ["Treatment"],
-      "tags": ["redesigning the hardware around the ward", "Clinical practice"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Implementers & operators"
+      ],
+      "stages": [
+        "Use"
+      ],
+      "sourceStage": "Treatment",
+      "tags": [
+        "Biomedical materials",
+        "redesigning the hardware around the ward",
+        "Clinical practice"
+      ],
       "summary": "The nursing team — 18 people including Xue Han — gave feedback on workflow, training and device compatibility. Their input led to the integrated endoscope and instrument, the electronic manual and Bluetooth screen mirroring, and a syringe-damping blind test that improved precise dosing.",
       "rationale": "The hardware is used by clinical staff, so we took our first design to a professional nursing team rather than deciding its details internally. Xue Han is an experienced nurse who spent ten years at 254 Hospital and rotated through several departments; our design drew mainly on the advice of her and her colleagues — 18 in total.",
       "interview": "They raised three main issues: uncertainty about where and how the material is prepared; questions about the experience of using the device; and the training complexity of introducing a new device, plus adaptability concerns — if the interface is not common, the endoscopic view cannot be shown on emergency-room screens.",
@@ -456,15 +531,22 @@
     },
     {
       "id": "SB_000001",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Prof. Ouyang Hongwei",
       "topic": "defining the indication and the degradation window",
       "role": "Tissue engineering researcher",
       "organisation": "Zhejiang University",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
       "tags": [
+        "Biomedical materials",
         "defining the indication and the degradation window",
         "Research"
       ],
@@ -526,15 +608,25 @@
     },
     {
       "id": "SB_000013",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Songlin Shi",
       "topic": "questioning the magnetic and protein routes",
       "role": "Doctoral researcher and iGEM mentor",
       "organisation": "Westlake University",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
-      "tags": ["questioning the magnetic and protein routes", "Research"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
+      "tags": [
+        "Biomedical materials",
+        "questioning the magnetic and protein routes",
+        "Research"
+      ],
       "summary": "Songlin Shi questioned the trade-off between magnetic particle orientation and clearance, and the reliability of protein performance after denaturation and refolding. The interview led to a low-field, fast-crosslinking scheme and to ITC purification that protects protein structure.",
       "rationale": "We met Songlin Shi — a doctoral researcher at the Emergency Medicine Research Centre of Westlake University's School of Medicine, a community mentor, a former member of the CCiC steering committee, an HP Committee member and an iGEM BYLP — while the three functional modules were taking shape but their compatibility, hardware support and protein feasibility had not been thought through.",
       "interview": "His questions focused on two areas: the tension between nanoparticle anisotropy and iron metabolism — enough magnetic loading for orientation versus particles that must eventually be cleared — and protein feasibility, including whether structure survives denaturation and renaturation and whether β-sheet aggregation and inclusion bodies would block the project.",
@@ -576,15 +668,25 @@
     },
     {
       "id": "SB_000014",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Prof. Patrick Butaye",
       "topic": "de-risking SELP expression",
       "role": "Microbiology and public health researcher",
       "organisation": "City University of Hong Kong",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
-      "tags": ["de-risking SELP expression", "Research"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
+      "tags": [
+        "Biomedical materials",
+        "de-risking SELP expression",
+        "Research"
+      ],
       "summary": "Prof. Butaye advised validating SELP expression and phase behaviour at small scale before scaling up. The team completed expression and ITC-purification validation accordingly, lowering the risk of discovering protein problems only after large batches.",
       "rationale": "The whole NEST route rested on an unverified assumption — that SELP, a large, highly repetitive protein, could be expressed normally in E. coli. We asked Prof. Patrick Butaye — vice-dean of City University of Hong Kong's Jockey Club College of Veterinary Medicine and Life Sciences, adjunct professor at Ghent University, editor-in-chief of Veterinary Sciences and an invited expert for WHO and EFSA — whether expression would work and whether abnormal folding or membrane issues should be expected.",
       "interview": "He advised a small-scale trial first and gave detailed experimental guidance; he considered the design essentially sound and sent useful reference papers by email. We also visited his laboratory, whose display boards of published work gave us ideas for our own poster.",
@@ -643,15 +745,25 @@
     },
     {
       "id": "SB_000003",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Prof. Huang Wenwen",
       "topic": "scalability and the salt/crosslinking link",
       "role": "SELP and biomaterials researcher",
       "organisation": "Zhejiang University–University of Edinburgh Institute",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
-      "tags": ["scalability and the salt/crosslinking link", "Research"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
+      "tags": [
+        "Biomedical materials",
+        "scalability and the salt/crosslinking link",
+        "Research"
+      ],
       "summary": "Prof. Huang Wenwen pointed out that residual salt from ITC purification hinders photocrosslinking. We added dialysis to remove it, solved the gelation problem, reached about two-second visible-light gelation, and now optimise purification and gelation as one continuous flow.",
       "rationale": "NEST makes SELP chain length, domain ratio, functional residues and peptide interfaces designable parameters. We asked Prof. Huang Wenwen, a tenured associate professor at the Zhejiang University–University of Edinburgh Institute (ZJE) and a leading researcher in the SELP field, about platform scalability and about the process link between purification and rapid photocrosslinking.",
       "interview": "She rated the overall design highly: the platform lets the team combine or adjust functions on a shared scaffold to meet different patient needs. She focused on the relation between crosslinking efficiency and the purification conditions, noting that the salt added during ITC can remain and interfere with Ru/SPS crosslinking; she also compared our purification efficiency with her laboratory's process and encouraged further industrial exploration.",
@@ -710,15 +822,25 @@
     },
     {
       "id": "SB_000015",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Dr. Yi Junzhi",
       "topic": "proving modularity by assembly efficiency",
       "role": "Modular protein engineering researcher",
       "organisation": "Liangzhu Laboratory, Zhejiang University",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
-      "tags": ["proving modularity by assembly efficiency", "Research"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
+      "tags": [
+        "Biomedical materials",
+        "proving modularity by assembly efficiency",
+        "Research"
+      ],
       "summary": "Dr. Yi Junzhi required modularity to be proven by assembly efficiency, function retention and reproducibility. The interview led us to a high-efficiency ligation system, a comparison of tag insertion positions, and a flexible linker to reduce steric shielding.",
       "rationale": "“Modules can be plugged in” was still a claim on a design drawing: the scaffold stays, the functional units change, but we could not say what proved it. We consulted Dr. Yi Junzhi, a researcher at Zhejiang University's Liangzhu Laboratory working on modular protein engineering and bone tissue engineering.",
       "interview": "He agreed that sequence-level design and standardised interfaces help tune material properties, but asked whether modules affect one another: fusion peptides may change expression or solubility, tags and ligases may change conformation, and multiple modules may cause site masking, lower ligation efficiency or weaker function. Plug-and-play should be proven by assembly efficiency, function retention and reproducibility, not by a diagram.",
@@ -760,15 +882,22 @@
     },
     {
       "id": "SB_000016",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Prof. Lin Si'en",
       "topic": "from particle alignment to a real anisotropic network",
       "role": "Tissue engineering researcher",
       "organisation": "University of Hong Kong (as recorded in IHP)",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
       "tags": [
+        "Biomedical materials",
         "from particle alignment to a real anisotropic network",
         "Research"
       ],
@@ -813,15 +942,22 @@
     },
     {
       "id": "SB_000017",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Prof. Li Xiaoming",
       "topic": "linking field-induced structure to local mechanics",
       "role": "Biomaterials researcher",
       "organisation": "Beihang University",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
       "tags": [
+        "Biomedical materials",
         "linking field-induced structure to local mechanics",
         "Research"
       ],
@@ -883,15 +1019,25 @@
     },
     {
       "id": "SB_000018",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Prof. Wu Congjun",
       "topic": "timing the light trigger",
       "role": "Physics researcher",
       "organisation": "Westlake University",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
-      "tags": ["timing the light trigger", "Research"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
+      "tags": [
+        "Biomedical materials",
+        "timing the light trigger",
+        "Research"
+      ],
       "summary": "Prof. Wu Congjun helped distinguish the filling and orientation window before illumination from the fast fixation required after it. The workflow now fixes injection, observation and magnetic orientation before the blue light, with an independently controlled light source.",
       "rationale": "NEST's precursor must stay flowable for injection and shaping, then form a stable network on demand. We discussed with Prof. Wu Congjun, Chair Professor of Physics at Westlake University, how blue light should trigger crosslinking and when it should be switched on.",
       "interview": "We described the Ru/SPS visible-light system, which crosslinks tyrosine residues and gels in about two seconds under blue light. The discussion clarified two separate requirements: an operating window before illumination for filling and orientation, and rapid fixation after it. Illuminating too early loses flow; too late risks precursor loss or structural change.",
@@ -950,15 +1096,25 @@
     },
     {
       "id": "SB_000019",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Dr. Hong Yi",
       "topic": "what “adhesion” actually means",
       "role": "Cartilage and tissue-adhesion researcher",
       "organisation": "Liangzhu Laboratory, Zhejiang University",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
-      "tags": ["what “adhesion” actually means", "Research"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
+      "tags": [
+        "Biomedical materials",
+        "what “adhesion” actually means",
+        "Research"
+      ],
       "summary": "Dr. Hong Yi split the vague idea of adhesion into wet-state bonding, shape retention and long-term interface integration, prompting lap-shear, compression and rheology tests and a clearer covalent mechanism for bonding to host cartilage.",
       "rationale": "We assumed that because SELP gels, fills the defect and looks attached, adhesion was solved. The joint environment is wet and cyclically loaded, so we asked Dr. Hong Yi, a researcher at Zhejiang University's Liangzhu Laboratory working on biomimetic cartilage and medical tissue adhesives, to examine the interface.",
       "interview": "He asked what “adhesion” means here: the material's wet adhesive strength, the gel's shape retention, or long-term stable integration with native cartilage — related but different properties. A single tensile or compression test cannot represent cyclic loading, wear, interfacial peeling and post-degradation change, and adhesion, modulus and toughness trade off against each other.",
@@ -1000,15 +1156,25 @@
     },
     {
       "id": "SB_000020",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Prof. Ma Guanghui",
       "topic": "from a module list to a process",
       "role": "Research",
       "organisation": "University of Science and Technology of China (as recorded in IHP)",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
-      "tags": ["from a module list to a process", "Research"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
+      "tags": [
+        "Biomedical materials",
+        "from a module list to a process",
+        "Research"
+      ],
       "summary": "Prof. Ma Guanghui asked whether the components are compatible under temperature, salt, light and storage. The interview turned the module list into a stepwise process with batch quality indicators, and mitochondrial payload integrity is now evaluated separately.",
       "rationale": "The three functional modules had each taken shape, but we were still thinking module by module. We asked Prof. Ma Guanghui, a professor at the University of Science and Technology of China and a former iGEM judge, about feasibility, because it depends not only on each component working but on their compatibility in order, stability and storage.",
       "interview": "He focused on engineering and process integration: whether components must be mixed at the same time, which are sensitive to temperature, salt, light or shear, how long the assembly lasts, whether batches of protein, particles and liposomes are consistent, and where losses or inactivation are most likely. For the mitochondrial carrier, payload integrity and function need separate assessment.",
@@ -1050,15 +1216,25 @@
     },
     {
       "id": "SB_000021",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Prof. Chen Ming",
       "topic": "making models verifiable",
       "role": "Bioinformatics and systems biology researcher",
       "organisation": "Zhejiang University",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
-      "tags": ["making models verifiable", "Research"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
+      "tags": [
+        "Biomedical materials",
+        "making models verifiable",
+        "Research"
+      ],
       "summary": "Across four meetings, Prof. Chen Ming required clear variables, model assumptions and experimental evidence. The team split five design variables, assigned each modelling scale its question, and calibrated predictions with rheology, gelation and directional mechanics.",
       "rationale": "We expected modelling to tell us directly which sequence was best and saw the software mainly as a display. We asked Prof. Chen Ming at Zhejiang University whether that view holds up from a systems-modelling and data-analysis perspective.",
       "interview": "He focused on whether variables are clearly defined, whether model inputs and outputs are interpretable, and whether results are supported by independent experiments. A prediction without stated assumptions, parameter ranges and error sources is hard to trust, and building a software interface is not model validation: software should help record parameters, compare options, show the basis of a model and feed results into the next design round.",
@@ -1117,15 +1293,25 @@
     },
     {
       "id": "SB_000022",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Prof. Zhou Hong and Lin Lei",
       "topic": "the AI rehabilitation mirror",
       "role": "Biomedical engineering research team",
       "organisation": "Zhejiang University",
-      "domain": "Biomedical materials",
-      "stages": ["R&D"],
-      "tags": ["the AI rehabilitation mirror", "Research"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Research & development"
+      ],
+      "sourceStage": "R&D",
+      "tags": [
+        "Biomedical materials",
+        "the AI rehabilitation mirror",
+        "Research"
+      ],
       "summary": "Because rehabilitation is long and hard to sustain, the team worked with Lin Lei's group on a smart rehabilitation mirror. Clinical advice and patient research defined the training content, while motion monitoring and demonstration feedback help patients train correctly and keep going at home.",
       "rationale": "Our patient interviews showed that rehabilitation is effective but long, repetitive and hard to sustain, especially when it requires repeated trips to hospital. We approached Prof. Zhou Hong and Lin Lei's team at the School of Biomedical Engineering to explore a home-based alternative.",
       "interview": "The mirror lets patients practise at home and compare their movements with an on-screen avatar, while the AI module monitors whether the movement matches the tutorial. ZJU-China provided clinicians' guidance and survey findings on what patients actually need; the biomedical engineering team provided the technical development.",
@@ -1184,15 +1370,25 @@
     },
     {
       "id": "SB_000004",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Beijing Weixinkang",
       "topic": "planning the first factory samples",
       "role": "Medical-device manufacturing partner",
       "organisation": "Beijing Weixinkang Medical",
-      "domain": "Biomedical materials",
-      "stages": ["Manufacturing"],
-      "tags": ["planning the first factory samples", "Manufacturing"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Producers & providers"
+      ],
+      "stages": [
+        "Production & delivery"
+      ],
+      "sourceStage": "Manufacturing",
+      "tags": [
+        "Biomedical materials",
+        "planning the first factory samples",
+        "Manufacturing"
+      ],
       "summary": "Beijing Weixinkang raised purification, transport and hospital-acceptance requirements from a factory perspective, leading to different purification routes for SELP and the functional proteins and helping estimate equipment, annual output and first-generation sample costs.",
       "rationale": "As we considered factory-scale production, our literature review showed we needed a mature partner to produce the first samples, so we approached Beijing Weixinkang Medical — a company with extensive experience in medical-device patent filing and Class III device applications.",
       "interview": "They gave constructive advice on device manufacturing: give more thought to protein purification so the first factory samples can be released; consider extraction cost, transport cost and hospital acceptance. They also helped estimate the equipment, annual output and sample-production cost of NEST's first generation and provided a profit analysis.",
@@ -1228,15 +1424,22 @@
     },
     {
       "id": "SB_000023",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Shaanxi Lanyanwei",
       "topic": "what a product must define before translation",
       "role": "Research translation company",
       "organisation": "Shaanxi Lanyanwei",
-      "domain": "Biomedical materials",
-      "stages": ["Manufacturing"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Producers & providers"
+      ],
+      "stages": [
+        "Production & delivery"
+      ],
+      "sourceStage": "Manufacturing",
       "tags": [
+        "Biomedical materials",
         "what a product must define before translation",
         "Manufacturing"
       ],
@@ -1281,15 +1484,25 @@
     },
     {
       "id": "SB_000024",
-      "revision": 1,
+      "revision": 4,
       "kind": "stakeholder",
       "title": "Yuanyi Biology",
       "topic": "scale-up and batch consistency",
       "role": "Biomanufacturing company",
-      "organisation": "Yuanyi (Tianjin) Biotechnology Co., Ltd. · 元一（天津）生物科技有限公司",
-      "domain": "Biomedical materials",
-      "stages": ["Manufacturing"],
-      "tags": ["scale-up and batch consistency", "Manufacturing"],
+      "organisation": "Yuanyi (Tianjin) Biotechnology Co., Ltd.",
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Producers & providers"
+      ],
+      "stages": [
+        "Production & delivery"
+      ],
+      "sourceStage": "Manufacturing",
+      "tags": [
+        "Biomedical materials",
+        "scale-up and batch consistency",
+        "Manufacturing"
+      ],
       "summary": "Yuanyi Biology asked about expression yield, purification recovery and formulation consistency. The team now plans cross-batch records and sample traceability and includes purification losses, testing and storage in the scale-up cost estimate.",
       "rationale": "NEST's SELP scaffold and functional components depend on recombinant expression and assembly. As sample demand grows, we needed to understand what happens when laboratory expression and purification are scaled, so we met founder Zhang Li online at Yuanyi Biology.",
       "interview": "The discussion covered expression, purification and batch-to-batch consistency: whether different SELP constructs give stable yields and recovery, whether ITC purification holds up at larger volumes, and how to keep assembly ratios and final formulation consistent when components are produced separately. Cost has to be seen across the whole process, including purification losses, assembly efficiency, testing and storage.",
@@ -1348,15 +1561,25 @@
     },
     {
       "id": "SB_000025",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Shanghai Lingjiu",
       "topic": "scoping a CDMO collaboration",
       "role": "Potential CDMO partner",
       "organisation": "Shanghai Lingjiu Medical Technology",
-      "domain": "Biomedical materials",
-      "stages": ["Manufacturing"],
-      "tags": ["scoping a CDMO collaboration", "Manufacturing"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Producers & providers"
+      ],
+      "stages": [
+        "Production & delivery"
+      ],
+      "sourceStage": "Manufacturing",
+      "tags": [
+        "Biomedical materials",
+        "scoping a CDMO collaboration",
+        "Manufacturing"
+      ],
       "summary": "The discussion with Shanghai Lingjiu turned contract manufacturing into material responsibilities, trial formulation, scale and acceptance criteria. The team plans a technology-transfer package, a small trial batch compared with lab samples, and then quality and delivery responsibilities.",
       "rationale": "To move NEST from research samples to repeatable delivery, we assessed external manufacturing partners and identified Shanghai Lingjiu Medical Technology as a potential CDMO.",
       "interview": "The discussion defined the technical scope: which raw materials the team provides, which steps the partner owns, the formulation and scale of the first trial, and the indicators for successful technology transfer. Transfer must also cover performance after preparation — module assembly, precursor state, blue-light gelation and the mechanical properties of the gel.",
@@ -1398,15 +1621,25 @@
     },
     {
       "id": "SB_000026",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Li Zhuoya",
       "topic": "keeping a student team going",
       "role": "Entrepreneur and former iGEM participant",
       "organisation": "Yiru Biology",
-      "domain": "Biomedical materials",
-      "stages": ["Market access"],
-      "tags": ["keeping a student team going", "Translation & access"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Partners & funders"
+      ],
+      "stages": [
+        "Adoption & access"
+      ],
+      "sourceStage": "Market access",
+      "tags": [
+        "Biomedical materials",
+        "keeping a student team going",
+        "Translation & access"
+      ],
       "summary": "Li Zhuoya started from how a student team keeps going after the competition, asking about technical responsibilities, experiment reproducibility and how results are presented. The interview led to a handover and version-management plan with owners, stage goals and priorities for each route.",
       "rationale": "Li Zhuoya is a partner at Yiru Biology and a former iGEMer with rich experience in turning iGEM teams into companies. We wanted to understand how a student team continues to build technology, organise people and attract partners after the competition, so that the project does not stop when members graduate.",
       "interview": "The conversation focused on continuity: who is responsible for the material, the device and the software; whether key experiments can be reproduced from records by new members; and how to distinguish completed results, work in progress and future plans when presenting the project. For a platform project, more modules also mean the team must set priorities, owners and stop/go criteria for each route.",
@@ -1448,15 +1681,25 @@
     },
     {
       "id": "SB_000027",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "ZJU Innovation & Entrepreneurship College",
       "topic": "matching support to stages",
       "role": "University innovation support",
       "organisation": "Zhejiang University",
-      "domain": "Biomedical materials",
-      "stages": ["Market access"],
-      "tags": ["matching support to stages", "Translation & access"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Partners & funders"
+      ],
+      "stages": [
+        "Adoption & access"
+      ],
+      "sourceStage": "Market access",
+      "tags": [
+        "Biomedical materials",
+        "matching support to stages",
+        "Translation & access"
+      ],
       "summary": "Through Mr Wang Feifan, the team joined research training, survey and entrepreneurship programmes. The discussion led to mapping university support onto concrete deliverables and sharing experiment, budget and result records to support continued development and handover.",
       "rationale": "NEST spans material research, device development and start-up preparation, and needs sustained collaboration and resources. We approached Zhejiang University's Innovation and Entrepreneurship College to understand the support available at different stages.",
       "interview": "Through Wang Feifan's introduction we joined the Young Eagle Program, SRTP, SQTP and the Dandelion innovation competition, covering future-technology exploration, research training, project investigation and practice, and entrepreneurship.",
@@ -1492,15 +1735,25 @@
     },
     {
       "id": "SB_000028",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Zhang Jie",
       "topic": "what to prove first",
       "role": "Investment adviser",
       "organisation": "Huadan Angel Investment",
-      "domain": "Biomedical materials",
-      "stages": ["Market access"],
-      "tags": ["what to prove first", "Translation & access"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Partners & funders"
+      ],
+      "stages": [
+        "Adoption & access"
+      ],
+      "sourceStage": "Market access",
+      "tags": [
+        "Biomedical materials",
+        "what to prove first",
+        "Translation & access"
+      ],
       "summary": "Zhang Jie asked, from an investor's view, about the first product's value, competitor differences and full use cost. The interview narrowed the validation scope, separated the near-term product from later module expansion, and led to an initial cooperation intent for the first sample batch.",
       "rationale": "Zhang Jie of Huadan Angel Investment heard our pitch at a hackathon held at Zhejiang University and discussed the market, competitors and cost with us. NEST is a platform, but its modules differ in maturity, validation cost and value. We wanted an investor's view of what the project should prove first and which progress limited funding should support.",
       "interview": "The discussion focused on how the platform becomes a clear first product: one SELP scaffold carrying different modules supports iteration without restarting from a new system each time, and the market is large with no mature competing product. We discussed which specific value NEST should prove first, whether the cost estimate covers purification, quality testing, storage, functional components and consumables, and what checkable results the team could deliver at the end of early financing.",
@@ -1542,15 +1795,25 @@
     },
     {
       "id": "SB_000029",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Erik Forsberg",
       "topic": "cost structure and pilot markets",
       "role": "Technology and entrepreneurship adviser",
       "organisation": "Zhejiang University",
-      "domain": "Biomedical materials",
-      "stages": ["Market access"],
-      "tags": ["cost structure and pilot markets", "Translation & access"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Partners & funders"
+      ],
+      "stages": [
+        "Adoption & access"
+      ],
+      "sourceStage": "Market access",
+      "tags": [
+        "Biomedical materials",
+        "cost structure and pilot markets",
+        "Translation & access"
+      ],
       "summary": "Prof. Erik Forsberg supplied data and an analytical framework for cost modelling, guiding market sizing and commercial feasibility and bringing Hong Kong into the comparison of potential pilot markets.",
       "rationale": "Our cost estimates were limited by a lack of practical knowledge, so we asked Erik Forsberg, an experienced hardware professor who teaches entrepreneurship at Zhejiang University, to act as our business adviser.",
       "interview": "He provided many non-public data sources for our business model, guided the cost analysis and built the cost-structure framework and economic model, and suggested piloting in regions with relatively lighter regulatory requirements.",
@@ -1592,15 +1855,25 @@
     },
     {
       "id": "SB_000030",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Prof. Li Jianqin",
       "topic": "a staged commercialisation path",
       "role": "Economics researcher",
       "organisation": "Zhejiang University",
-      "domain": "Biomedical materials",
-      "stages": ["Market access"],
-      "tags": ["a staged commercialisation path", "Translation & access"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Adoption & access"
+      ],
+      "sourceStage": "Market access",
+      "tags": [
+        "Biomedical materials",
+        "a staged commercialisation path",
+        "Translation & access"
+      ],
       "summary": "Prof. Li Jianqin helped organise pre-launch preparation and equity arrangements, stressing that contributions, intellectual property and partnerships must be clarified first. The team now plans staged deliverables, funding and owners that keep continuity through departures and later financing.",
       "rationale": "As NEST moved from research toward entrepreneurship, the team had to consider technology development order, funding, intellectual property and organisation. We consulted Prof. Li Jianqin at Zhejiang University's School of Economics.",
       "interview": "The discussion covered the preparation process before market launch and the equity structure: which technologies and materials involve the university or other partners, how core members' contributions are agreed, and how the team keeps decision continuity when people leave, funding arrives or outside resources join. Technology validation, manufacturing preparation, professional advice and market exploration must share one schedule.",
@@ -1659,15 +1932,26 @@
     },
     {
       "id": "SB_000031",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Zhang Binghong",
       "topic": "writing a report government can use",
       "role": "Entrepreneurship and public-sector adviser",
       "organisation": "RTC Talent Development Business School (as recorded in IHP)",
-      "domain": "Biomedical materials",
-      "stages": ["Market access"],
-      "tags": ["writing a report government can use", "Translation & access"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Partners & funders",
+        "Decision-makers"
+      ],
+      "stages": [
+        "Adoption & access"
+      ],
+      "sourceStage": "Market access",
+      "tags": [
+        "Biomedical materials",
+        "writing a report government can use",
+        "Translation & access"
+      ],
       "summary": "Zhang Binghong guided the team to organise the survey around government needs and propose a replicable action plan. The team completed the cartilage-health report and received a reply from the Hangzhou Municipal Health Commission, providing a basis for community outreach.",
       "rationale": "We wanted our survey findings to reach the people who can act on them. Zhang Binghong, secretary of the RTC Talent Development Business School and an international senior entrepreneurship coach with experience in government relations and support for vulnerable groups, was a judge at our Dandelion competition and discussed the report with us afterwards.",
       "interview": "She set out what a government-facing report needs: a clear structure, alignment with government priorities, a defined scope of investigation, and a time plan that can be replicated and extended. We stayed in contact while writing and produced the final document.",
@@ -1719,15 +2003,25 @@
     },
     {
       "id": "SB_000032",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Mavis Wu",
       "topic": "the payment perspective",
       "role": "Insurance adviser",
       "organisation": "Prudential (as recorded in IHP)",
-      "domain": "Biomedical materials",
-      "stages": ["Market access"],
-      "tags": ["the payment perspective", "Translation & access"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Partners & funders"
+      ],
+      "stages": [
+        "Adoption & access"
+      ],
+      "sourceStage": "Market access",
+      "tags": [
+        "Biomedical materials",
+        "the payment perspective",
+        "Translation & access"
+      ],
       "summary": "Mavis Wu explained how hospital adoption and insurance payment are linked and advised preparing payer-facing product information. The team now includes material, consumable and procedure costs and organises the patient-benefit data needed for reimbursement discussions.",
       "rationale": "Access also depends on who pays. Mainland resident medical insurance requires mature therapies and long approval cycles, so we looked at commercial insurance and asked Mavis Wu, a branch director at Prudential and a 2026 QAA award winner, about payment arrangements.",
       "interview": "She described how insurance works and the profile of high-end commercial-insurance customers: many policies pay hospitals directly, so hospital acceptance of the material is decisive, and some insurers work from coverage lists such as the mainland's Commercial Health Insurance Innovative Drug Catalogue (2025), while in Hong Kong individual insurers decide. A payer-facing information pack should make reimbursement criteria explicit.",
@@ -1769,15 +2063,26 @@
     },
     {
       "id": "SB_000033",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Tung Wah Group of Hospitals",
       "topic": "hospital adoption in Hong Kong",
       "role": "Hospital services and adoption",
       "organisation": "Tung Wah Group of Hospitals",
-      "domain": "Biomedical materials",
-      "stages": ["Market access"],
-      "tags": ["hospital adoption in Hong Kong", "Translation & access"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Producers & providers",
+        "Implementers & operators"
+      ],
+      "stages": [
+        "Adoption & access"
+      ],
+      "sourceStage": "Market access",
+      "tags": [
+        "Biomedical materials",
+        "hospital adoption in Hong Kong",
+        "Translation & access"
+      ],
       "summary": "The discussion with the Tung Wah Group of Hospitals turned hospital cooperation into target departments, a first formulation, product classification and safety and efficacy evidence, and mapped procurement, training and batch-traceability requirements for later clinical collaboration.",
       "rationale": "After speaking with Mavis Wu, we wanted to understand hospital admission standards, so we contacted Chen Yihua, medical services supervisor of the Tung Wah Group of Hospitals, and Li Yongshi, director of the centre, to explore how NEST could enter a hospital.",
       "interview": "The discussion covered confirming the target department and collaboration model, fixing the first product formulation, use and mechanism, checking with the Hong Kong Department of Health whether the product is a medical device and which risk class and MDACS listing apply (assessed separately for the base hydrogel and the version with an active delivery module), preparing product information, specifications, compliance documents and safety and efficacy evidence, and explaining the full-course cost against existing treatments. Hospitals also require clinical and technical evaluation, supplier and procurement procedures, acceptance, training, batch traceability and adverse-event reporting.",
@@ -1836,15 +2141,25 @@
     },
     {
       "id": "SB_000034",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Legislator Lam Chit-yuen",
       "topic": "Hong Kong's device listing",
       "role": "Medical and health policy stakeholder",
       "organisation": "Hong Kong Legislative Council (as recorded in IHP)",
-      "domain": "Biomedical materials",
-      "stages": ["Market access"],
-      "tags": ["Hong Kong's device listing", "Translation & access"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Decision-makers"
+      ],
+      "stages": [
+        "Adoption & access"
+      ],
+      "sourceStage": "Market access",
+      "tags": [
+        "Biomedical materials",
+        "Hong Kong's device listing",
+        "Translation & access"
+      ],
       "summary": "The discussion with Legislator Lam focused on Hong Kong device access and the classification of composite materials. It led the team to revisit the first product and consider launching the simpler SELP material first, spreading translation cost and access work across stages.",
       "rationale": "Entering a hospital still requires MDACS listing under the Hong Kong Department of Health, and device access standards have been changing. We consulted Lam Chit-yuen, a legislator for the medical and health sector.",
       "interview": "MDACS is the Medical Device Administrative Control System; listing means the device has passed its document review and appears on the Department of Health's published list. It is currently voluntary and covers Class II, III and IV general devices and Classes B, C and D IVDs, with post-market surveillance; hospitals may still require listing for procurement, so “voluntary” does not mean unnecessary. A composite material like our hydrogel cannot be filed under a single standard. He is interested in new materials and noted that Hong Kong has support schemes for innovative materials.",
@@ -1886,15 +2201,22 @@
     },
     {
       "id": "SB_000035",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Dr. Shen Yang",
       "topic": "pain that falls outside the diagnostic threshold",
       "role": "Anthropology researcher",
       "organisation": "Department of Sociology, Zhejiang University",
-      "domain": "Biomedical materials",
-      "stages": ["Rehabilitation"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Impact & follow-up"
+      ],
+      "sourceStage": "Rehabilitation",
       "tags": [
+        "Biomedical materials",
         "pain that falls outside the diagnostic threshold",
         "Rehabilitation & society"
       ],
@@ -1933,15 +2255,25 @@
     },
     {
       "id": "SB_000036",
-      "revision": 1,
+      "revision": 3,
       "kind": "stakeholder",
       "title": "Chen Xi",
       "topic": "drawing rehabilitation into art",
       "role": "Artist and computational-technology researcher",
       "organisation": "Goldsmiths, University of London (as recorded in IHP)",
-      "domain": "Biomedical materials",
-      "stages": ["Rehabilitation"],
-      "tags": ["drawing rehabilitation into art", "Rehabilitation & society"],
+      "domain": "Health & wellbeing",
+      "roleTags": [
+        "Experts & researchers"
+      ],
+      "stages": [
+        "Impact & follow-up"
+      ],
+      "sourceStage": "Rehabilitation",
+      "tags": [
+        "Biomedical materials",
+        "drawing rehabilitation into art",
+        "Rehabilitation & society"
+      ],
       "summary": "Artist Chen Xi advised us on motion sensors and artistic visualisation, and our rehabilitation movements became two artworks. The collaboration also brought a visual-tracking piece on engineered bacteria into our science talks and is planned for a future art–science exhibition.",
       "rationale": "Chen Xi is a designer and artist, currently a PhD candidate in art and computational technology at Goldsmiths, University of London. He curated “The Larva of Time” for Bai Shunong, a Berggruen Fellow at Peking University's School of Life Sciences, in which an artist drew butterfly trajectories in the air with eye tracking; the resulting works brought science and art, biology and the public, closer together.",
       "interview": "We met him at a lecture and explained that “The Larva of Time” had inspired us to make a trajectory artwork from cartilage-rehabilitation movements. He gave concrete advice on sensors and on artistic drawing, and the work was completed from those rehabilitation movements. He also shared his experience of drawing with visual sensors and allowed us to present a new piece that traces the movement of engineered bacteria, which made our synthetic-biology talks more interactive and helped audiences understand engineered bacteria.",

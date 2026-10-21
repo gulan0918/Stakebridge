@@ -6,7 +6,9 @@ Help another team understand whom to engage, why the perspective matters, what t
 
 Use the app's **Contribute** page to prepare a proposal. Download the JSON file, open the linked GitHub issue form and attach it. You can also open an **Entry proposal** issue directly. GitHub handles contributor sign-in; the app does not collect GitHub credentials.
 
-Propose a documented person, organisation, interview group or anonymised perspective. Include the name, role, product stages, domain, contributing team, public source, rationale, interview account, integration evidence and limitations. Add links to published materials and retain dates as recorded. Identify completed actions and future plans clearly.
+Propose a documented person, organisation, interview group or anonymised perspective. Include the name, role or position, project stages, stakeholder role tags, project field, optional keywords, contributing team, public source, rationale, interview account, integration evidence and limitations. Add links to published materials and retain dates as recorded. Identify completed actions and future plans clearly.
+
+Choose one or more project stages and role tags; both support custom values. The suggested stages start with Users and apply across project types. Project field also accepts a custom value. Keywords describe specific topics or methods and are optional. The library uses these same categories for search and filters.
 
 Maintainers assign the permanent ID. Do not reuse another entry's ID for a new person or guide.
 

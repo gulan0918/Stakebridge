@@ -2,7 +2,7 @@
 
 ## Personal workspace
 
-The workspace stores project names, stages, stakeholder notes and original attachments in the browser's IndexedDB. It does not send them to the repository, analytics services or a cloud database. The app loads the public registry from the same hosting origin and contains no analytics or third-party font/CDN calls.
+The workspace stores project names, stages, stakeholder notes and original attachments in the browser's IndexedDB. It does not send them to the repository, analytics services or a cloud database. The app loads the public registry from the same hosting origin and contains no analytics. The Outfit font is loaded from the team’s existing asset on `static.igem.wiki`; linked IHP photographs also load from iGEM when viewed. There are no Google Fonts or third-party font CDN requests.
 
 Browser-local storage is not account authentication or encryption. Someone with access to the same browser profile may access its workspace. A different origin, browser profile or device has different local data. Clearing site data removes the workspace. A private browsing session may remove it when closed.
 

@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { download, safeFilename } from "../components/stakebridge/model";
 import { REPOSITORY } from "./schema";
+import { JOURNEY_STAGES } from "../journey";
+import { ROLE_TAGS, PROJECT_FIELDS, splitTags } from "./taxonomy";
 
 export function Contribute() {
   const [proposal, setProposal] = useState({
@@ -21,25 +23,44 @@ export function Contribute() {
     integration: "",
     limitations: "",
     source: "",
+    tags: "",
+    customRoles: "",
   });
+  const [selectedStages, setSelectedStages] = useState<string[]>([]);
+  const [selectedRoles, setSelectedRoles] = useState<string[]>([]);
+  const [error, setError] = useState("");
   const [consent, setConsent] = useState(false);
   const [generated, setGenerated] = useState(false);
   function update(key: keyof typeof proposal, value: string) {
     setProposal((previous) => ({ ...previous, [key]: value }));
     setGenerated(false);
+    setError("");
   }
   function submit(event: FormEvent) {
     event.preventDefault();
+    if (!selectedStages.length && !splitTags(proposal.stage).length) {
+      setError("Choose at least one project stage.");
+      return;
+    }
+    if (!selectedRoles.length && !splitTags(proposal.customRoles).length) {
+      setError("Choose at least one stakeholder role.");
+      return;
+    }
     if (consent) setGenerated(true);
   }
+  const {
+    stage: customStages,
+    customRoles,
+    tags: keywords,
+    ...details
+  } = proposal;
   const json = {
     format: "stakebridge-proposal",
     version: 1,
-    ...proposal,
-    stages: proposal.stage
-      .split(",")
-      .map((item) => item.trim())
-      .filter(Boolean),
+    ...details,
+    stages: [...new Set([...selectedStages, ...splitTags(customStages)])],
+    roleTags: [...new Set([...selectedRoles, ...splitTags(customRoles)])],
+    tags: splitTags(keywords),
     contact: {
       availability: "unrecorded",
       channel: "",
@@ -49,41 +70,13 @@ export function Contribute() {
   };
   return (
     <div className="contribute-page">
-      <span className="entry-kicker">COMMUNITY SUBMISSIONS</span>
-      <h1>
-        Contribute to the registry
-        <br />
-        <em>Share a documented engagement record.</em>
-      </h1>
+      <h1>Contribute a record</h1>
       <p className="contribute-intro">
-        Share the perspective your team needed, the conversation you had and the
-        decisions that followed. Include the original documentation so other
-        teams can understand the context and learn from your experience.
+        Share your team’s stakeholder experience.
       </p>
-      <div className="contribute-process">
-        <span>
-          <b>01</b> Prepare an entry
-        </span>
-        <span>→</span>
-        <span>
-          <b>02</b> Submit on GitHub
-        </span>
-        <span>→</span>
-        <span>
-          <b>03</b> Maintainer review
-        </span>
-        <span>→</span>
-        <span>
-          <b>04</b> Publish & reuse
-        </span>
-      </div>
       <div className="contribute-layout">
         <form className="contribute-form" onSubmit={submit}>
-          <h2>Propose a registry entry</h2>
-          <p className="muted">
-            No private workspace data or files are sent automatically. This form
-            prepares a proposal for you to submit.
-          </p>
+          <h2>Interview details</h2>
           <div className="contribute-fields">
             <label>
               Entry title
@@ -96,13 +89,13 @@ export function Contribute() {
               />
             </label>
             <label>
-              Role
+              Role or position
               <input
                 value={proposal.role}
                 required
                 maxLength={160}
                 onChange={(event) => update("role", event.target.value)}
-                placeholder="e.g. biomaterials researcher"
+                placeholder="e.g. end user, researcher, service provider"
               />
             </label>
             <label>
@@ -114,24 +107,20 @@ export function Contribute() {
               />
             </label>
             <label>
-              Product stages
+              Project field
               <input
-                value={proposal.stage}
-                required
-                maxLength={300}
-                onChange={(event) => update("stage", event.target.value)}
-                placeholder="e.g. R&D, Manufacturing (comma-separated)"
-              />
-            </label>
-            <label>
-              Field / domain
-              <input
+                list="project-fields"
                 value={proposal.domain}
                 required
                 maxLength={120}
                 onChange={(event) => update("domain", event.target.value)}
-                placeholder="e.g. Biomedical materials"
+                placeholder="Choose or enter a field"
               />
+              <datalist id="project-fields">
+                {PROJECT_FIELDS.map((field) => (
+                  <option key={field} value={field} />
+                ))}
+              </datalist>
             </label>
             <label>
               Contributing team
@@ -165,41 +154,76 @@ export function Contribute() {
                 maxLength={100}
               />
             </label>
-            <label>
-              Public professional contact (optional)
-              <input
-                value={proposal.publicContact}
-                onChange={(event) =>
-                  update("publicContact", event.target.value)
-                }
-                placeholder="Published business email or official contact page"
-                maxLength={1000}
-              />
-            </label>
-            <label>
-              Official contact source (optional)
-              <input
-                type="url"
-                pattern="https://.*"
-                value={proposal.contactSource}
-                onChange={(event) =>
-                  update("contactSource", event.target.value)
-                }
-                placeholder="Official page publishing this contact"
-                maxLength={1000}
-                required={!!proposal.publicContact}
-              />
-            </label>
-            <label>
-              Published material links (optional)
-              <textarea
-                value={proposal.materials}
-                onChange={(event) => update("materials", event.target.value)}
-                placeholder="Links to published photographs, documents or related pages"
-                maxLength={3000}
-              />
-            </label>
           </div>
+          <fieldset className="contribution-tags">
+            <legend>Project stages</legend>
+            <div>
+              {JOURNEY_STAGES.map((name) => (
+                <button
+                  type="button"
+                  key={name}
+                  aria-pressed={selectedStages.includes(name)}
+                  onClick={() => {
+                    setSelectedStages((previous) =>
+                      previous.includes(name)
+                        ? previous.filter((item) => item !== name)
+                        : [...previous, name],
+                    );
+                    setGenerated(false);
+                    setError("");
+                  }}
+                >
+                  {name}
+                </button>
+              ))}
+            </div>
+            <input
+              value={proposal.stage}
+              onChange={(event) => update("stage", event.target.value)}
+              placeholder="Custom stages (optional, comma-separated)"
+              aria-label="Custom project stages"
+              maxLength={300}
+            />
+          </fieldset>
+          <fieldset className="contribution-tags">
+            <legend>Stakeholder roles</legend>
+            <div>
+              {ROLE_TAGS.map((name) => (
+                <button
+                  type="button"
+                  key={name}
+                  aria-pressed={selectedRoles.includes(name)}
+                  onClick={() => {
+                    setSelectedRoles((previous) =>
+                      previous.includes(name)
+                        ? previous.filter((item) => item !== name)
+                        : [...previous, name],
+                    );
+                    setGenerated(false);
+                    setError("");
+                  }}
+                >
+                  {name}
+                </button>
+              ))}
+            </div>
+            <input
+              value={proposal.customRoles}
+              onChange={(event) => update("customRoles", event.target.value)}
+              placeholder="Custom roles (optional, comma-separated)"
+              aria-label="Custom stakeholder roles"
+              maxLength={300}
+            />
+          </fieldset>
+          <label className="long-field">
+            Keywords (optional)
+            <input
+              value={proposal.tags}
+              onChange={(event) => update("tags", event.target.value)}
+              placeholder="e.g. accessibility, prototyping, community engagement"
+              maxLength={500}
+            />
+          </label>
           {(
             [
               [
@@ -241,6 +265,46 @@ export function Contribute() {
               />
             </label>
           ))}
+          <details className="optional-fields">
+            <summary>Materials & public contact (optional)</summary>
+            <div className="contribute-fields">
+              {" "}
+              <label>
+                Public professional contact (optional)
+                <input
+                  value={proposal.publicContact}
+                  onChange={(event) =>
+                    update("publicContact", event.target.value)
+                  }
+                  placeholder="Published business email or official contact page"
+                  maxLength={1000}
+                />
+              </label>
+              <label>
+                Official contact source (optional)
+                <input
+                  type="url"
+                  pattern="https://.*"
+                  value={proposal.contactSource}
+                  onChange={(event) =>
+                    update("contactSource", event.target.value)
+                  }
+                  placeholder="Official page publishing this contact"
+                  maxLength={1000}
+                  required={!!proposal.publicContact}
+                />
+              </label>
+              <label>
+                Published material links (optional)
+                <textarea
+                  value={proposal.materials}
+                  onChange={(event) => update("materials", event.target.value)}
+                  placeholder="Links to published photographs, documents or related pages"
+                  maxLength={3000}
+                />
+              </label>
+            </div>
+          </details>
           <label className="contribute-consent">
             <input
               type="checkbox"
@@ -248,19 +312,23 @@ export function Contribute() {
               checked={consent}
               onChange={(event) => setConsent(event.target.checked)}
             />
-            I have permission to publish this material and have removed patient
-            identifiers, private contact details and confidential information.
+            I have permission to publish this material under CC BY 4.0 and have
+            removed private or confidential information.
           </label>
+          {error && (
+            <p className="form-error" role="alert">
+              {error}
+            </p>
+          )}
           <button type="submit" className="app-button">
             Prepare submission
           </button>
-          {generated && (
+          {generated && consent && (
             <div className="proposal-ready" role="status">
               <h3>Your proposal is ready for review</h3>
               <p>
-                Download the proposal, open the GitHub submission form, and
-                attach the file to your issue. Maintainers assign a permanent SB
-                ID after review. Nothing is published by this button.
+                Download the file and attach it to a GitHub issue. Publication
+                follows maintainer review.
               </p>
               <div className="button-row">
                 <button
@@ -290,32 +358,14 @@ export function Contribute() {
           )}
         </form>
         <aside className="contribute-aside">
-          <h3>Document the engagement</h3>
-          <p>
-            Each accepted entry receives a stable ID and versioned
-            documentation. Other teams can add experience with their own
-            evidence and context.
-          </p>
-          <h3>Contact and availability</h3>
-          <p>
-            Listing a person or documenting a previous interview does not mean
-            they welcome new interviews. Published professional contact details
-            need an official source. An “open to interviews” status requires
-            separate permission evidence and an expiry date.
-          </p>
-          <h3>Credit the contributing team</h3>
-          <p>
-            Include your team, year and original documentation. Report what
-            actually happened, including limitations and unsuccessful
-            approaches.
-          </p>
-          <a
-            href={`${REPOSITORY}/blob/main/CONTRIBUTING.md`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Read contribution guidance ↗
-          </a>
+          <h3>How it works</h3>
+          <ol>
+            <li>Prepare this record.</li>
+            <li>Download the proposal.</li>
+            <li>Submit it on GitHub.</li>
+            <li>Maintainers review it.</li>
+          </ol>
+          <a href="#handbook/contribute">Contribution guide →</a>
         </aside>
       </div>
     </div>

@@ -8,11 +8,13 @@ export type RegistryEntry = {
   domain: string;
   stages: string[];
   tags: string[];
+  roleTags?: string[];
   summary: string;
   rationale: string;
   interview?: string;
   interviewDate?: string;
   topic?: string;
+  sourceStage?: string;
   materials?: {
     label: string;
     url: string;
@@ -127,6 +129,21 @@ export function validateRegistry(value: unknown): asserts value is Registry {
       fail(`${entry.id}: invalid categories`);
     if (new Set(entry.members).size !== entry.members.length)
       fail(`${entry.id}: duplicate member`);
+    for (const key of ["stages", "tags", "roleTags"]) {
+      const tags = entry[key];
+      if (key === "roleTags" && tags === undefined) continue;
+      if (
+        !strings(tags) ||
+        tags.some((tag) => !tag.trim() || tag !== tag.trim()) ||
+        new Set(tags).size !== tags.length ||
+        (key !== "tags" && !tags.length)
+      )
+        fail(`${entry.id}: invalid ${key}`);
+    }
+    for (const key of ["topic", "interviewDate", "sourceStage"]) {
+      if (entry[key] !== undefined && !text(entry[key]))
+        fail(`${entry.id}: invalid ${key}`);
+    }
     if (entry.interview !== undefined && !text(entry.interview))
       fail(`${entry.id}: invalid interview`);
     if (entry.materials !== undefined) {

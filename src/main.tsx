@@ -10,6 +10,8 @@ import {
 } from "./components/stakebridge/model";
 import { RegistryView } from "./registry/Directory";
 import { Contribute } from "./registry/Contribute";
+import { Handbook } from "./Handbook";
+import { standardStageName } from "./journey";
 import {
   REPOSITORY,
   validateRegistry,
@@ -79,20 +81,27 @@ function App() {
     };
   }
   function addEntry(entry: RegistryEntry, stageId: string) {
+    const existing = store.workspace?.stakeholders.find(
+      (item) => item.source?.entryId === entry.id && item.stageId === stageId,
+    );
+    if (existing) {
+      setRecordId(existing.id);
+      location.hash = "workspace";
+      return existing.id;
+    }
     const item = referenceDraft(entry, stageId);
     store.change((previous) => ({
       ...previous,
       stakeholders: [...previous.stakeholders, item],
     }));
     setRecordId(item.id);
-    setMessage(
-      `${entry.id} added as a planning draft. Record your own interview and project changes.`,
-    );
+    setMessage(`${entry.title} added to your drafts.`);
     location.hash = "workspace";
+    return item.id;
   }
   function usePathway(entry: RegistryEntry) {
     if (!registry || store.loading || store.loadError) {
-      setMessage("Wait for browser storage to open, then try again.");
+      setMessage("Your workspace is opening. Please try again in a moment.");
       return;
     }
     const stages = store.workspace
@@ -102,10 +111,11 @@ function App() {
       if (
         !stages.some(
           (stage) =>
-            stage.name.toLocaleLowerCase() === name.toLocaleLowerCase(),
+            standardStageName(stage.name).toLocaleLowerCase() ===
+            standardStageName(name).toLocaleLowerCase(),
         )
       )
-        stages.push({ id: newId(), name });
+        stages.push({ id: newId(), name: standardStageName(name) });
     }
     if (stages.length > 8) {
       setMessage(
@@ -121,7 +131,8 @@ function App() {
           stages.find((stage) =>
             member.stages.some(
               (name) =>
-                name.toLocaleLowerCase() === stage.name.toLocaleLowerCase(),
+                standardStageName(name).toLocaleLowerCase() ===
+                standardStageName(stage.name).toLocaleLowerCase(),
             ),
           )?.id || stages[0].id,
         ),
@@ -170,28 +181,32 @@ function App() {
             height="35"
             alt=""
           />
-          <span>
-            StakeBridge<span>Stakeholder engagement</span>
-          </span>
+          <span>StakeBridge</span>
         </a>
         <nav aria-label="Main navigation">
           <a
             href="#registry"
             aria-current={view === "registry" ? "page" : undefined}
           >
-            Shared registry
+            Library
           </a>
           <a
             href="#workspace"
             aria-current={view === "workspace" ? "page" : undefined}
           >
-            My workspace
+            Workspace
+          </a>
+          <a
+            href="#handbook"
+            aria-current={view === "handbook" ? "page" : undefined}
+          >
+            Handbook
           </a>
           <a
             href="#contribute"
             aria-current={view === "contribute" ? "page" : undefined}
           >
-            Contribute <span>↗</span>
+            Contribute
           </a>
         </nav>
         <a
@@ -215,22 +230,54 @@ function App() {
           </button>
         </div>
       )}
-      <main id="main-content" tabIndex={-1}>
+      <main
+        id="main-content"
+        tabIndex={-1}
+        onInvalidCapture={(event) => {
+          const field = event.target;
+          if (
+            field instanceof HTMLInputElement ||
+            field instanceof HTMLTextAreaElement ||
+            field instanceof HTMLSelectElement
+          ) {
+            field.setCustomValidity(
+              field.validity.valueMissing
+                ? "Please complete this field."
+                : field instanceof HTMLInputElement && field.type === "url"
+                  ? "Enter a valid HTTPS link."
+                  : "Please check this value.",
+            );
+          }
+        }}
+        onInputCapture={(event) => {
+          const field = event.target;
+          if (
+            field instanceof HTMLInputElement ||
+            field instanceof HTMLTextAreaElement ||
+            field instanceof HTMLSelectElement
+          )
+            field.setCustomValidity("");
+        }}
+      >
         {view === "workspace" ? (
           <div className="workspace-page">
             <div className="workspace-page-title">
               <div>
-                <span className="entry-kicker">PERSONAL WORKSPACE</span>
-                <h1>Project workspace</h1>
+                <h1>Workspace</h1>
               </div>
-              <a href="#registry">Browse the stakeholder registry ↗</a>
+              <a href="#registry">Browse library →</a>
             </div>
             <StakeholderWorkspace
               store={store}
               openRecordId={recordId}
               starter={starter}
+              registry={registry}
+              registryError={registryError}
+              onAddFromLibrary={addEntry}
             />
           </div>
+        ) : view === "handbook" ? (
+          <Handbook key={route} slug={route.split("/")[1]} />
         ) : view === "contribute" ? (
           <Contribute />
         ) : view === "registry" ? (
@@ -272,33 +319,14 @@ function App() {
         )}
       </main>
       <footer className="app-footer">
+        <span>StakeBridge · ZJU-China 2026</span>
         <div>
-          <b>StakeBridge</b>
-          <span>A contribution to the iGEM community by ZJU-China</span>
-        </div>
-        <div>
-          <a
-            href={`${REPOSITORY}/blob/main/CONTRIBUTING.md`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Contribution guide
-          </a>
-          <a
-            href={`${REPOSITORY}/blob/main/docs/PRIVACY.md`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Data & permission
-          </a>
-          <a href="https://registry.igem.org/" target="_blank" rel="noreferrer">
-            Design reference: iGEM Registry ↗
+          <a href="#handbook">Handbook</a>
+          <a href="#handbook/data">Data & credits</a>
+          <a href={REPOSITORY} target="_blank" rel="noreferrer">
+            GitHub ↗
           </a>
         </div>
-        <p>
-          Independent community project. Personal drafts stay in your browser;
-          reviewed registry entries are public.
-        </p>
       </footer>
     </div>
   );

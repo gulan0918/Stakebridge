@@ -6,75 +6,79 @@ import {
   type RegistryEntry,
 } from "./schema";
 import type { Workspace } from "../components/stakebridge/model";
+import { JOURNEY_STAGES, standardStageName } from "../journey";
 
-const stageOrder = [
-  "Patient",
-  "R&D",
-  "Manufacturing",
-  "Market access",
-  "Treatment",
-  "Rehabilitation",
-];
+const stageOrder = JOURNEY_STAGES;
 
 function PublicContacts({ entry }: { entry: RegistryEntry }) {
   const contacts = entry.publicContacts || [];
   return (
     <div className="directory-contact">
-      <h3>Public contact</h3>
+      <h3>Contact</h3>
       {contacts.length ? (
-        <>
-          {contacts.map((channel) => (
-            <div
-              className="public-channel"
-              key={`${channel.kind}-${channel.value}`}
+        contacts.map((channel) => (
+          <div
+            className="public-channel"
+            key={`${channel.kind}-${channel.value}`}
+          >
+            <span>{channel.label}</span>
+            <a
+              href={channel.url}
+              target={channel.kind === "website" ? "_blank" : undefined}
+              rel="noreferrer"
             >
-              <span>{channel.label}</span>
-              <a
-                href={channel.url}
-                target={channel.kind === "website" ? "_blank" : undefined}
-                rel="noreferrer"
-              >
-                {channel.value}
-              </a>
-              <small>
-                <a href={channel.source} target="_blank" rel="noreferrer">
-                  Official source ↗
-                </a>{" "}
-                · checked {channel.checkedOn}
-              </small>
-            </div>
-          ))}
-          {entry.contactReview?.note &&
-            !entry.contactReview.note.startsWith("No matching") && (
-              <p>{entry.contactReview.note}</p>
-            )}
-        </>
+              {channel.value}
+              {channel.kind === "website" ? " ↗" : ""}
+            </a>
+          </div>
+        ))
       ) : (
         <p>
           {entry.contactReview?.status === "not_sought"
-            ? "Patient contact details are not published."
-            : entry.contactReview?.note ||
-              "No public professional contact confirmed."}
+            ? "Patient contacts are not published."
+            : entry.contactReview?.status === "identity_uncertain"
+              ? "Identity needs verification."
+              : "No verified public contact."}
         </p>
       )}
+      {entry.contactReview?.note &&
+        contacts.length > 0 &&
+        !entry.contactReview.note.startsWith("No matching") && (
+          <p className="contact-note">{entry.contactReview.note}</p>
+        )}
       <div className="contact-status">
-        <b>Interview availability</b>
-        <span>
+        <span>New interviews</span>
+        <b>
           {openToContact(entry)
-            ? "Open to new enquiries"
+            ? "Open to enquiries"
             : entry.contact.availability === "closed"
-              ? "Currently unavailable"
-              : "Not separately recorded"}
-        </span>
+              ? "Unavailable"
+              : "Unconfirmed"}
+        </b>
       </div>
-      <p className="directory-footnote">
-        A public contact address does not establish willingness to take part in
-        a new interview.
-      </p>
       {openToContact(entry) && (
-        <a href={entry.contact.channel} target="_blank" rel="noreferrer">
-          Authorised interview channel ↗
+        <a
+          className="app-button"
+          href={entry.contact.channel}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Interview contact ↗
         </a>
+      )}
+      {contacts.length > 0 && (
+        <details className="contact-sources">
+          <summary>Sources & verification</summary>
+          {contacts.map((channel) => (
+            <p key={channel.url}>
+              <a href={channel.source} target="_blank" rel="noreferrer">
+                {channel.label} ↗
+              </a>
+              <span>Checked {channel.checkedOn}</span>
+            </p>
+          ))}
+          <a href="#handbook/interview">Contact and participation →</a>
+        </details>
       )}
     </div>
   );
@@ -96,6 +100,8 @@ export function RegistryView({
   const [query, setQuery] = useState("");
   const [stage, setStage] = useState("");
   const [contactFilter, setContactFilter] = useState("");
+  const [roleFilter, setRoleFilter] = useState("");
+  const [fieldFilter, setFieldFilter] = useState("");
   const [order, setOrder] = useState("source");
   const [page, setPage] = useState(1);
   const [tab, setTab] = useState("documentation");
@@ -109,6 +115,12 @@ export function RegistryView({
   ].filter((name) =>
     registry.entries.some((item) => item.stages.includes(name)),
   );
+  const roles = [
+    ...new Set(registry.entries.flatMap((item) => item.roleTags || [])),
+  ].sort();
+  const fields = [
+    ...new Set(registry.entries.map((item) => item.domain)),
+  ].sort();
   function changeFilter(action: () => void) {
     action();
     setPage(1);
@@ -116,6 +128,8 @@ export function RegistryView({
   const results = registry.entries.filter(
     (item) =>
       (!stage || item.stages.includes(stage)) &&
+      (!roleFilter || item.roleTags?.includes(roleFilter)) &&
+      (!fieldFilter || item.domain === fieldFilter) &&
       (!contactFilter ||
         (contactFilter === "public"
           ? !!item.publicContacts?.length
@@ -125,6 +139,8 @@ export function RegistryView({
         item.title,
         item.topic,
         item.role,
+        item.domain,
+        ...(item.roleTags || []),
         item.organisation,
         item.summary,
         item.rationale,
@@ -159,7 +175,9 @@ export function RegistryView({
     const defaultStage =
       workspace?.stages.find((item) =>
         entry.stages.some(
-          (name) => name.toLocaleLowerCase() === item.name.toLocaleLowerCase(),
+          (name) =>
+            standardStageName(name).toLocaleLowerCase() ===
+            standardStageName(item.name).toLocaleLowerCase(),
         ),
       )?.id ||
       workspace?.stages[0].id ||
@@ -168,7 +186,7 @@ export function RegistryView({
     return (
       <div className="directory record-page">
         <nav className="directory-breadcrumb" aria-label="Breadcrumb">
-          <a href="#registry">Stakeholder registry</a>
+          <a href="#registry">Library</a>
           <span>/</span>
           <span>{entry.title}</span>
         </nav>
@@ -186,7 +204,7 @@ export function RegistryView({
             target="_blank"
             rel="noreferrer"
           >
-            Original IHP record ↗
+            Original IHP ↗
           </a>
         </header>
         <dl className="record-metadata">
@@ -199,7 +217,7 @@ export function RegistryView({
             <dd>{entry.organisation || "Not separately listed"}</dd>
           </div>
           <div>
-            <dt>Product stage</dt>
+            <dt>Project stage</dt>
             <dd>{entry.stages.join(" / ")}</dd>
           </div>
           <div>
@@ -213,7 +231,7 @@ export function RegistryView({
         </dl>
         <nav className="record-tabs" aria-label="Record sections">
           {[
-            ["documentation", "Documentation"],
+            ["documentation", "Interview record"],
             ["materials", `Materials (${materials.length})`],
             ["experience", `Experience (${entry.experiences.length})`],
             ["history", "Source & history"],
@@ -234,7 +252,6 @@ export function RegistryView({
             {tab === "documentation" && (
               <>
                 <div className="record-summary">
-                  <h2>Overview</h2>
                   <p>{entry.summary}</p>
                 </div>
                 <section id="record-rationale">
@@ -272,22 +289,12 @@ export function RegistryView({
                     </ul>
                   </section>
                 )}
-                <p className="directory-footnote">
-                  Source:{" "}
-                  <a href={entry.source} target="_blank" rel="noreferrer">
-                    ZJU-China IHP documentation
-                  </a>
-                  . {entry.limitations}
-                </p>
               </>
             )}
             {tab === "materials" && (
               <>
                 <h2>Interview materials</h2>
-                <p className="directory-description">
-                  Materials already linked in the IHP record. Files open at
-                  their original source.
-                </p>
+
                 {materials.length ? (
                   materials.map((material) => (
                     <figure
@@ -364,6 +371,12 @@ export function RegistryView({
                   <dd>{entry.id}</dd>
                   <dt>Version</dt>
                   <dd>{entry.revision}</dd>
+                  {entry.sourceStage && (
+                    <>
+                      <dt>IHP category</dt>
+                      <dd>{entry.sourceStage}</dd>
+                    </>
+                  )}
                   <dt>Updated</dt>
                   <dd>{entry.updated}</dd>
                   <dt>Interview content</dt>
@@ -372,11 +385,14 @@ export function RegistryView({
                       Original IHP source at the imported revision ↗
                     </a>
                   </dd>
-                  <dt>Contact information</dt>
-                  <dd>
-                    Sources and verification dates are listed alongside each
-                    public channel.
-                  </dd>
+                  <dt>Field</dt>
+                  <dd>{entry.domain}</dd>
+                  <dt>Role tags</dt>
+                  <dd>{entry.roleTags?.join(" · ") || entry.role}</dd>
+                  <dt>Keywords</dt>
+                  <dd>{entry.tags.join(" · ")}</dd>
+                  <dt>Context</dt>
+                  <dd>{entry.limitations}</dd>
                 </dl>
                 <div className="button-row">
                   <a
@@ -402,11 +418,8 @@ export function RegistryView({
           <aside className="record-sidebar">
             <PublicContacts entry={entry} />
             <div className="directory-plan">
-              <h3>Add to your project</h3>
-              <p>
-                Create a planning draft with this record’s source. Your
-                interview notes and project changes remain your own.
-              </p>
+              <h3>Your project</h3>
+
               {entry.kind === "pathway" ? (
                 <button className="app-button" onClick={() => onPathway(entry)}>
                   Use pathway
@@ -414,7 +427,7 @@ export function RegistryView({
               ) : workspace ? (
                 <>
                   <label htmlFor="registry-target-stage">
-                    Product stage
+                    Project stage
                     <select
                       id="registry-target-stage"
                       value={targetStage || defaultStage}
@@ -431,12 +444,12 @@ export function RegistryView({
                     className="app-button"
                     onClick={() => onAdd(entry, targetStage || defaultStage)}
                   >
-                    Add planning draft
+                    Add to workspace
                   </button>
                 </>
               ) : (
                 <a href="#workspace" className="app-button">
-                  Create a workspace
+                  Create workspace
                 </a>
               )}
             </div>
@@ -448,226 +461,226 @@ export function RegistryView({
 
   return (
     <div className="directory">
-      <header className="directory-heading">
+      <header className="library-hero">
         <div>
-          <h1>Stakeholder registry</h1>
-          <p>
-            ZJU-China’s documented stakeholder engagement, organised by the
-            product journey.
-          </p>
+          <span className="library-collection">
+            Community library · {registry.entries.length} records
+          </span>
+          <h1>
+            Stakeholder
+            <br />
+            <span>library.</span>
+          </h1>
+          <p>People, perspectives and project experience.</p>
+          <div className="button-row">
+            <a className="app-button" href="#workspace">
+              Open workspace →
+            </a>
+            <a className="app-button text-button" href="#handbook">
+              Read the handbook
+            </a>
+          </div>
         </div>
-        <a className="app-button" href="#contribute">
-          Submit a record
-        </a>
+        <div className="library-journey" aria-label="Project journey">
+          <span>From research to practice</span>
+          <div>
+            {stageOrder.map((name, index) => (
+              <button
+                key={name}
+                type="button"
+                aria-pressed={stage === name}
+                onClick={() => changeFilter(() => setStage(name))}
+              >
+                <span className="journey-dot">{index + 1}</span>
+                <b>{name}</b>
+                <span aria-hidden="true">↗</span>
+              </button>
+            ))}
+          </div>
+        </div>
       </header>
-      <div className="directory-tools">
-        <label className="directory-search">
-          <span className="sr-only">Search stakeholder records</span>
-          <input
-            type="search"
-            value={query}
-            placeholder="Search names, organisations, topics or interview content"
-            onChange={(event) =>
-              changeFilter(() => setQuery(event.target.value))
-            }
-          />
-        </label>
-        <label>
-          <span className="sr-only">Contact filter</span>
-          <select
-            value={contactFilter}
-            onChange={(event) =>
-              changeFilter(() => setContactFilter(event.target.value))
-            }
-          >
-            <option value="">All contact statuses</option>
-            <option value="public">Public contact available</option>
-            <option value="open">Open to new interviews</option>
-          </select>
-        </label>
-      </div>
-      <div className="directory-layout">
-        <aside className="directory-filters">
-          <h2>Product stage</h2>
+      <section className="library-catalogue" aria-label="Stakeholder library">
+        <div className="catalogue-heading">
+          <h2>Explore the library</h2>
+          <a href="#contribute">Contribute a record ↗</a>
+        </div>
+        <div className="directory-tools">
+          <label className="directory-search">
+            <span className="sr-only">Search stakeholder records</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              aria-hidden="true"
+            >
+              <circle cx="10.5" cy="10.5" r="6.5" />
+              <path d="m16 16 5 5" />
+            </svg>
+            <input
+              type="search"
+              value={query}
+              placeholder="Search people, organisations or topics"
+              onChange={(event) =>
+                changeFilter(() => setQuery(event.target.value))
+              }
+            />
+          </label>
+          <label>
+            <span className="sr-only">Stakeholder role filter</span>
+            <select
+              value={roleFilter}
+              onChange={(event) =>
+                changeFilter(() => setRoleFilter(event.target.value))
+              }
+            >
+              <option value="">All roles</option>
+              {roles.map((role) => (
+                <option key={role} value={role}>
+                  {role}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span className="sr-only">Project field filter</span>
+            <select
+              value={fieldFilter}
+              onChange={(event) =>
+                changeFilter(() => setFieldFilter(event.target.value))
+              }
+            >
+              <option value="">All fields</option>
+              {fields.map((field) => (
+                <option key={field} value={field}>
+                  {field}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <span className="sr-only">Contact filter</span>
+            <select
+              value={contactFilter}
+              onChange={(event) =>
+                changeFilter(() => setContactFilter(event.target.value))
+              }
+            >
+              <option value="">All contacts</option>
+              <option value="public">Public contact available</option>
+              <option value="open">Open to interviews</option>
+            </select>
+          </label>
+        </div>
+        <nav className="stage-filters" aria-label="Project stage">
           <button
-            className={!stage ? "active" : ""}
             aria-pressed={!stage}
             onClick={() => changeFilter(() => setStage(""))}
           >
-            <span>All records</span>
-            <b>{registry.entries.length}</b>
+            All stages
           </button>
           {stages.map((name) => (
             <button
               key={name}
-              className={stage === name ? "active" : ""}
               aria-pressed={stage === name}
               onClick={() => changeFilter(() => setStage(name))}
             >
-              <span>{name}</span>
-              <b>
-                {
-                  registry.entries.filter((item) => item.stages.includes(name))
-                    .length
-                }
-              </b>
+              {name}
             </button>
           ))}
-          <div className="directory-filter-info">
-            <b>Collection</b>
-            <span>ZJU-China 2026</span>
-            <a
-              href="https://2026.igem.wiki/zju-china/human-practices#stakeholder-engagement"
-              target="_blank"
-              rel="noreferrer"
+        </nav>
+        <div className="results-toolbar">
+          <span>
+            {results.length} record{results.length === 1 ? "" : "s"}
+            {stage ? ` · ${stage}` : ""}
+          </span>
+          <label>
+            <span className="sr-only">Sort by</span>
+            <select
+              value={order}
+              onChange={(event) =>
+                changeFilter(() => setOrder(event.target.value))
+              }
             >
-              View IHP page ↗
-            </a>
-            <span>Updated {registry.updated}</span>
-          </div>
-        </aside>
-        <section className="directory-results" aria-label="Registry results">
-          <div className="results-toolbar">
-            <span>
-              {results.length
-                ? `${(currentPage - 1) * 12 + 1}–${Math.min(currentPage * 12, results.length)}`
-                : "0"}{" "}
-              of {results.length} records{stage ? ` · ${stage}` : ""}
-            </span>
-            <label>
-              Sort by
-              <select
-                value={order}
-                onChange={(event) =>
-                  changeFilter(() => setOrder(event.target.value))
-                }
-              >
-                <option value="source">IHP source order</option>
-                <option value="name">Name</option>
-                <option value="stage">Product stage</option>
-              </select>
-            </label>
-          </div>
-          {visible.length ? (
-            <>
-              <div className="directory-table-wrap">
-                <table className="directory-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Stakeholder / organisation</th>
-                      <th scope="col">Stage</th>
-                      <th scope="col">Interview focus</th>
-                      <th scope="col">Contact</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {visible.map((item) => (
-                      <tr key={item.id}>
-                        <td>
-                          <a
-                            className="directory-name"
-                            href={`#registry/${item.id}`}
-                          >
-                            {item.title}
-                          </a>
-                          <span className="directory-affiliation">
-                            {item.organisation || item.role}
-                          </span>
-                          <span className="directory-record-id">
-                            {item.id} · {item.interviewDate || "IHP record"}
-                          </span>
-                        </td>
-                        <td>
-                          <span className="stage-tag">{item.stages[0]}</span>
-                        </td>
-                        <td>
-                          <a
-                            className="directory-topic"
-                            href={`#registry/${item.id}`}
-                          >
-                            {item.topic || item.summary}
-                          </a>
-                          <span className="directory-material-count">
-                            {item.materials?.length || 0} linked material
-                            {item.materials?.length === 1 ? "" : "s"}
-                          </span>
-                        </td>
-                        <td>
-                          <span
-                            className={`public-status ${item.publicContacts?.length ? "available" : ""}`}
-                          >
-                            {item.publicContacts?.some(
-                              (channel) => channel.kind === "email",
-                            )
-                              ? "Public email"
-                              : item.publicContacts?.length
-                                ? "Public website"
-                                : item.contactReview?.status === "not_sought"
-                                  ? "Not published"
-                                  : "Not confirmed"}
-                          </span>
-                          <a
-                            className="directory-details"
-                            href={`#registry/${item.id}`}
-                          >
-                            View record →
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <nav
-                className="directory-pagination"
-                aria-label="Results pagination"
-              >
-                <button
-                  disabled={currentPage <= 1}
-                  onClick={() => setPage(currentPage - 1)}
+              <option value="source">IHP order</option>
+              <option value="name">Name A–Z</option>
+              <option value="stage">Project stage</option>
+            </select>
+          </label>
+        </div>
+        {visible.length ? (
+          <>
+            <div className="library-grid">
+              {visible.map((item) => (
+                <a
+                  className="library-card"
+                  key={item.id}
+                  href={`#registry/${item.id}`}
                 >
-                  Previous
-                </button>
-                <span>
-                  Page {currentPage} of {pages}
-                </span>
-                <button
-                  disabled={currentPage >= pages}
-                  onClick={() => setPage(currentPage + 1)}
-                >
-                  Next
-                </button>
-              </nav>
-            </>
-          ) : (
-            <div className="directory-empty">
-              <h2>No matching records</h2>
-              <p>
-                {contactFilter === "open"
-                  ? "No record currently has separately documented permission for new interviews matching these filters."
-                  : "Try another name, topic or product stage."}
-              </p>
-              <button
-                className="app-button secondary"
-                onClick={() => {
-                  setQuery("");
-                  setStage("");
-                  setContactFilter("");
-                  setPage(1);
-                }}
-              >
-                Clear filters
-              </button>
+                  <span className="stage-tag">{item.stages[0]}</span>
+                  <h3>{item.title}</h3>
+                  <p className="library-organisation">
+                    {item.organisation || item.role}
+                  </p>
+                  <p className="library-topic">{item.topic || item.summary}</p>
+                  <div className="library-card-bottom">
+                    <span>
+                      {item.publicContacts?.length
+                        ? "Public contact"
+                        : item.interviewDate || "Interview record"}
+                    </span>
+                    <span className="card-arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                  </div>
+                </a>
+              ))}
             </div>
-          )}
-          <p className="directory-footnote">
-            Each record preserves the team’s Rationale, Interview and
-            Integration account. Public contact details are checked against
-            their cited sources; availability for new interviews is recorded
-            separately.
-          </p>
-        </section>
-      </div>
+            <nav
+              className="directory-pagination"
+              aria-label="Results pagination"
+            >
+              <button
+                disabled={currentPage <= 1}
+                onClick={() => setPage(currentPage - 1)}
+              >
+                ← Previous
+              </button>
+              <span>
+                {currentPage} / {pages}
+              </span>
+              <button
+                disabled={currentPage >= pages}
+                onClick={() => setPage(currentPage + 1)}
+              >
+                Next →
+              </button>
+            </nav>
+          </>
+        ) : (
+          <div className="directory-empty">
+            <h3>No matching records</h3>
+            <p>
+              {contactFilter === "open"
+                ? "No confirmed interview availability in these results."
+                : "Try another search or stage."}
+            </p>
+            <button
+              className="app-button secondary"
+              onClick={() => {
+                setQuery("");
+                setStage("");
+                setContactFilter("");
+                setRoleFilter("");
+                setFieldFilter("");
+                setPage(1);
+              }}
+            >
+              Clear filters
+            </button>
+          </div>
+        )}
+      </section>
     </div>
   );
 }

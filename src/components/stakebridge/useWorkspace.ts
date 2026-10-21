@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { loadFile, loadWorkspace, saveWorkspace } from "./storage";
 import type { Workspace } from "./model";
+import { upgradeDefaultStages } from "../../journey";
 
 export function useWorkspace() {
   const [workspace, setWorkspace] = useState<Workspace | null>(null);
@@ -54,9 +55,19 @@ export function useWorkspace() {
     loadWorkspace()
       .then((loaded) => {
         if (!cancelled) {
-          current.current = loaded;
-          setWorkspace(loaded);
+          const stages = loaded && upgradeDefaultStages(loaded.stages);
+          const next =
+            loaded && stages !== loaded.stages
+              ? { ...loaded, stages: stages! }
+              : loaded;
+          current.current = next;
+          setWorkspace(next);
           setLoading(false);
+          if (next !== loaded) {
+            revision.current += 1;
+            setSaveState("saving");
+            void flush().catch(() => {});
+          }
         }
       })
       .catch((error: unknown) => {

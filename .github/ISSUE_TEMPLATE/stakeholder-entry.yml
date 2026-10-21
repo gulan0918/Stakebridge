@@ -15,7 +15,7 @@ body:
     id: proposal
     attributes:
       label: Proposal and source documentation
-      description: "Attach your proposal JSON here. Or provide name, organisation, role, stages, domain, interview date, rationale, interview account, integration, limitations, published material links and an HTTPS public source."
+      description: "Attach your proposal JSON here. Or provide name, organisation, role or position, project stages, stakeholder role tags, project field, optional keywords, interview date, rationale, interview account, integration, limitations, published material links and an HTTPS public source."
     validations:
       required: true
   - type: textarea
