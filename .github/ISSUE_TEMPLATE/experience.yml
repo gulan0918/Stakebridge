@@ -1,0 +1,38 @@
+name: Add community experience
+description: Document your own team's use of an existing engagement entry.
+title: "[Experience] SB_"
+body:
+  - type: input
+    id: entry
+    attributes:
+      label: Registry ID
+      placeholder: SB_000001
+    validations:
+      required: true
+  - type: input
+    id: team
+    attributes:
+      label: Team and year
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: Context, action, outcome and limitations
+      description: "Describe what your team did, what changed and where the experience may not apply. Separate completed actions from plans."
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Public evidence link
+      placeholder: https://
+    validations:
+      required: true
+  - type: checkboxes
+    id: permission
+    attributes:
+      label: Publication permission
+      options:
+        - label: I have permission to publish this material under CC BY 4.0 and it contains no private contact details, patient identifiers or confidential information.
+          required: true

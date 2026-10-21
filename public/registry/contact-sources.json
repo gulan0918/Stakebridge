@@ -1,0 +1,320 @@
+{
+  "Prof. Ouyang Hongwei": {
+    "role": "Tissue engineering researcher",
+    "organisation": "Zhejiang University",
+    "channels": [
+      {
+        "label": "University email",
+        "kind": "email",
+        "value": "hwoy@zju.edu.cn",
+        "url": "mailto:hwoy@zju.edu.cn",
+        "source": "https://person.zju.edu.cn/en/ouyanghongwei",
+        "checkedOn": "2026-10-21"
+      },
+      {
+        "label": "University profile",
+        "kind": "website",
+        "value": "University profile",
+        "url": "https://person.zju.edu.cn/en/ouyanghongwei",
+        "source": "https://person.zju.edu.cn/en/ouyanghongwei",
+        "checkedOn": "2026-10-21"
+      }
+    ]
+  },
+  "Prof. Huang Wenwen": {
+    "role": "SELP and biomaterials researcher",
+    "organisation": "Zhejiang University–University of Edinburgh Institute",
+    "channels": [
+      {
+        "label": "University email",
+        "kind": "email",
+        "value": "wenwenhuang@intl.zju.edu.cn",
+        "url": "mailto:wenwenhuang@intl.zju.edu.cn",
+        "source": "https://zje.zju.edu.cn/zje/Faculty/list4.htm",
+        "checkedOn": "2026-10-21"
+      },
+      {
+        "label": "Faculty directory",
+        "kind": "website",
+        "value": "Faculty directory",
+        "url": "https://zje.zju.edu.cn/zje/Faculty/list4.htm",
+        "source": "https://zje.zju.edu.cn/zje/Faculty/list4.htm",
+        "checkedOn": "2026-10-21"
+      }
+    ]
+  },
+  "Prof. Patrick Butaye": {
+    "role": "Microbiology and public health researcher",
+    "organisation": "City University of Hong Kong",
+    "channels": [
+      {
+        "label": "University email",
+        "kind": "email",
+        "value": "pabutaye@cityu.edu.hk",
+        "url": "mailto:pabutaye@cityu.edu.hk",
+        "source": "https://www.cityu.edu.hk/ph/staff/prof-patrick-butaye",
+        "checkedOn": "2026-10-21"
+      },
+      {
+        "label": "University profile",
+        "kind": "website",
+        "value": "University profile",
+        "url": "https://www.cityu.edu.hk/ph/staff/prof-patrick-butaye",
+        "source": "https://www.cityu.edu.hk/ph/staff/prof-patrick-butaye",
+        "checkedOn": "2026-10-21"
+      }
+    ]
+  },
+  "Prof. Li Xiaoming": {
+    "role": "Biomaterials researcher",
+    "organisation": "Beihang University",
+    "channels": [
+      {
+        "label": "University email",
+        "kind": "email",
+        "value": "lixm@buaa.edu.cn",
+        "url": "mailto:lixm@buaa.edu.cn",
+        "source": "https://shi.buaa.edu.cn/lixiaoming/zh_CN/index.htm",
+        "checkedOn": "2026-10-21"
+      },
+      {
+        "label": "University profile",
+        "kind": "website",
+        "value": "University profile",
+        "url": "https://shi.buaa.edu.cn/lixiaoming/zh_CN/index.htm",
+        "source": "https://shi.buaa.edu.cn/lixiaoming/zh_CN/index.htm",
+        "checkedOn": "2026-10-21"
+      }
+    ]
+  },
+  "Prof. Wu Congjun": {
+    "role": "Physics researcher",
+    "organisation": "Westlake University",
+    "channels": [
+      {
+        "label": "University email",
+        "kind": "email",
+        "value": "wucongjun@westlake.edu.cn",
+        "url": "mailto:wucongjun@westlake.edu.cn",
+        "source": "https://en.westlake.edu.cn/faculty/congjun-wu.html",
+        "checkedOn": "2026-10-21"
+      },
+      {
+        "label": "University profile",
+        "kind": "website",
+        "value": "University profile",
+        "url": "https://en.westlake.edu.cn/faculty/congjun-wu.html",
+        "source": "https://en.westlake.edu.cn/faculty/congjun-wu.html",
+        "checkedOn": "2026-10-21"
+      }
+    ]
+  },
+  "Prof. Chen Ming": {
+    "role": "Bioinformatics and systems biology researcher",
+    "organisation": "Zhejiang University",
+    "channels": [
+      {
+        "label": "University email",
+        "kind": "email",
+        "value": "mchen@zju.edu.cn",
+        "url": "mailto:mchen@zju.edu.cn",
+        "source": "https://person.zju.edu.cn/0005111",
+        "checkedOn": "2026-10-21"
+      },
+      {
+        "label": "University profile",
+        "kind": "website",
+        "value": "University profile",
+        "url": "https://person.zju.edu.cn/0005111",
+        "source": "https://person.zju.edu.cn/0005111",
+        "checkedOn": "2026-10-21"
+      }
+    ]
+  },
+  "Prof. Zhou Hong and Lin Lei": {
+    "role": "Biomedical engineering research team",
+    "organisation": "Zhejiang University",
+    "note": "The published contact below is Prof. Zhou Hong’s university contact, not a separately verified contact for Lin Lei.",
+    "channels": [
+      {
+        "label": "Prof. Zhou Hong · university email",
+        "kind": "email",
+        "value": "zhouhong_zju@zju.edu.cn",
+        "url": "mailto:zhouhong_zju@zju.edu.cn",
+        "source": "https://person.zju.edu.cn/zhouhong",
+        "checkedOn": "2026-10-21"
+      },
+      {
+        "label": "Prof. Zhou Hong · university profile",
+        "kind": "website",
+        "value": "Prof. Zhou Hong · university profile",
+        "url": "https://person.zju.edu.cn/zhouhong",
+        "source": "https://person.zju.edu.cn/zhouhong",
+        "checkedOn": "2026-10-21"
+      }
+    ]
+  },
+  "Prof. Ma Guanghui": {
+    "organisation": "University of Science and Technology of China (as recorded in IHP)",
+    "status": "identity_uncertain",
+    "note": "The name and affiliation in the IHP account could not be matched confidently to an official profile. No contact is published."
+  },
+  "Dr. Huang Jun": {
+    "role": "Sports-medicine clinician",
+    "organisation": "Zhejiang Provincial Sports Hospital"
+  },
+  "Dr. Qiu Xiaoming": {
+    "role": "Orthopaedic clinician",
+    "organisation": "Sir Run Run Shaw Hospital, Hangzhou"
+  },
+  "Dr. Li Zhiguo": {
+    "role": "Orthopaedic clinician",
+    "organisation": "Beijing Tongren Hospital, Mentougou campus (as recorded in IHP)"
+  },
+  "Dr. Ren Bo": {
+    "role": "Sports-medicine clinician",
+    "organisation": "Xi’an Honghui Hospital"
+  },
+  "Dr. Zhang Yumei": {
+    "role": "Rehabilitation clinician",
+    "organisation": "First Affiliated Hospital of Nanjing Medical University"
+  },
+  "Nurse Xue Han and her nursing team": {
+    "role": "Nursing team",
+    "organisation": "254 Hospital (as recorded in IHP)"
+  },
+  "Songlin Shi": {
+    "role": "Doctoral researcher and iGEM mentor",
+    "organisation": "Westlake University"
+  },
+  "Dr. Yi Junzhi": {
+    "role": "Modular protein engineering researcher",
+    "organisation": "Liangzhu Laboratory, Zhejiang University"
+  },
+  "Prof. Lin Si'en": {
+    "role": "Tissue engineering researcher",
+    "organisation": "University of Hong Kong (as recorded in IHP)"
+  },
+  "Dr. Hong Yi": {
+    "role": "Cartilage and tissue-adhesion researcher",
+    "organisation": "Liangzhu Laboratory, Zhejiang University"
+  },
+  "Beijing Weixinkang": {
+    "role": "Medical-device manufacturing partner",
+    "organisation": "Beijing Weixinkang Medical"
+  },
+  "Shaanxi Lanyanwei": {
+    "role": "Research translation company",
+    "organisation": "Shaanxi Lanyanwei"
+  },
+  "Yuanyi Biology": {
+    "role": "Biomanufacturing company",
+    "organisation": "Yuanyi (Tianjin) Biotechnology Co., Ltd. · 元一（天津）生物科技有限公司",
+    "channels": [
+      {
+        "label": "Business enquiries",
+        "kind": "email",
+        "value": "business@yuanyibio.com",
+        "url": "mailto:business@yuanyibio.com",
+        "source": "https://www.yuanyibio.com/",
+        "checkedOn": "2026-10-21"
+      },
+      {
+        "label": "Company website",
+        "kind": "website",
+        "value": "Company website",
+        "url": "https://www.yuanyibio.com/",
+        "source": "https://www.yuanyibio.com/",
+        "checkedOn": "2026-10-21"
+      }
+    ],
+    "note": "This is the company’s published business contact, not a direct personal address for the interview participant."
+  },
+  "Shanghai Lingjiu": {
+    "role": "Potential CDMO partner",
+    "organisation": "Shanghai Lingjiu Medical Technology"
+  },
+  "Li Zhuoya": {
+    "role": "Entrepreneur and former iGEM participant",
+    "organisation": "Yiru Biology"
+  },
+  "ZJU Innovation & Entrepreneurship College": {
+    "role": "University innovation support",
+    "organisation": "Zhejiang University"
+  },
+  "Zhang Jie": {
+    "role": "Investment adviser",
+    "organisation": "Huadan Angel Investment"
+  },
+  "Erik Forsberg": {
+    "role": "Technology and entrepreneurship adviser",
+    "organisation": "Zhejiang University"
+  },
+  "Prof. Li Jianqin": {
+    "role": "Economics researcher",
+    "organisation": "Zhejiang University",
+    "channels": [
+      {
+        "label": "University email",
+        "kind": "email",
+        "value": "zjhzljq@126.com",
+        "url": "mailto:zjhzljq@126.com",
+        "source": "https://person.zju.edu.cn/ljq",
+        "checkedOn": "2026-10-21"
+      },
+      {
+        "label": "University profile",
+        "kind": "website",
+        "value": "University profile",
+        "url": "https://person.zju.edu.cn/ljq",
+        "source": "https://person.zju.edu.cn/ljq",
+        "checkedOn": "2026-10-21"
+      }
+    ]
+  },
+  "Zhang Binghong": {
+    "role": "Entrepreneurship and public-sector adviser",
+    "organisation": "RTC Talent Development Business School (as recorded in IHP)"
+  },
+  "Mavis Wu": {
+    "role": "Insurance adviser",
+    "organisation": "Prudential (as recorded in IHP)"
+  },
+  "Tung Wah Group of Hospitals": {
+    "role": "Hospital services and adoption",
+    "organisation": "Tung Wah Group of Hospitals",
+    "channels": [
+      {
+        "label": "Institutional enquiries",
+        "kind": "email",
+        "value": "enquiry@tungwah.org.hk",
+        "url": "mailto:enquiry@tungwah.org.hk",
+        "source": "https://www.tungwah.org.hk/en/about/contact/",
+        "checkedOn": "2026-10-21"
+      },
+      {
+        "label": "Official contact page",
+        "kind": "website",
+        "value": "Official contact page",
+        "url": "https://www.tungwah.org.hk/en/about/contact/",
+        "source": "https://www.tungwah.org.hk/en/about/contact/",
+        "checkedOn": "2026-10-21"
+      }
+    ],
+    "note": "This is the institution’s general enquiries channel, not a direct contact for the staff named in the IHP record."
+  },
+  "Legislator Lam Chit-yuen": {
+    "role": "Medical and health policy stakeholder",
+    "organisation": "Hong Kong Legislative Council (as recorded in IHP)",
+    "status": "identity_uncertain",
+    "note": "No official profile matching the exact name recorded in IHP was confirmed. No individual contact is published."
+  },
+  "Dr. Shen Yang": {
+    "role": "Anthropology researcher",
+    "organisation": "Department of Sociology, Zhejiang University"
+  },
+  "Chen Xi": {
+    "role": "Artist and computational-technology researcher",
+    "organisation": "Goldsmiths, University of London (as recorded in IHP)"
+  }
+}

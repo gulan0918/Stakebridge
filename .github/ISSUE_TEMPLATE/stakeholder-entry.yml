@@ -1,0 +1,34 @@
+name: Entry proposal
+description: Propose a documented stakeholder engagement record for review.
+title: "[Entry proposal] "
+body:
+  - type: markdown
+    attributes:
+      value: "A proposal is reviewed before publication. Attach the JSON prepared by the app, or provide the required documentation below. Do not attach private recordings, patient information or private contact details."
+  - type: input
+    id: team
+    attributes:
+      label: Contributing team and year
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal and source documentation
+      description: "Attach your proposal JSON here. Or provide name, organisation, role, stages, domain, interview date, rationale, interview account, integration, limitations, published material links and an HTTPS public source."
+    validations:
+      required: true
+  - type: textarea
+    id: contact
+    attributes:
+      label: Public professional contact and interview availability, if known
+      description: "Include an official source for any published professional contact. Separately, an open-to-interviews status requires an authorised public HTTPS channel, permission evidence and an expiry date. Past participation is insufficient."
+  - type: checkboxes
+    id: permission
+    attributes:
+      label: Publication permission
+      options:
+        - label: I have the rights and permission to publish this contribution under CC BY 4.0 and have removed confidential information and private personal data.
+          required: true
+        - label: I understand that a maintainer will review this proposal before assigning an ID and publishing it.
+          required: true

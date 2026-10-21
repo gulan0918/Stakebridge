@@ -1,0 +1,17 @@
+name: Correct an entry
+description: Request a correction, permission update or removal.
+title: "[Correction] SB_"
+body:
+  - type: input
+    id: entry
+    attributes:
+      label: Registry ID
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What should be corrected?
+      description: "Explain the correction and provide a public source where appropriate. For privacy concerns, identify the entry without repeating the private information."
+    validations:
+      required: true

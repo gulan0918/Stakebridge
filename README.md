@@ -1,21 +1,21 @@
 # StakeBridge
 
-**Every conversation can become a starting point for the next team.**
+**A shared foundation for stakeholder engagement across the iGEM community.**
 
-StakeBridge is a contribution to Human Practices in the iGEM community by ZJU-China. Inspired by the iGEM Parts Registry, it connects stakeholder perspectives, engagement pathways and project insights into a shared resource that teams can assess, adapt and build on.
+StakeBridge is a Human Practices contribution by ZJU-China. It helps iGEM teams plan engagement along a product’s journey, document what people told them, and show how that feedback changed the project. The shared registry preserves real engagement accounts so future teams can learn whom to approach, why a perspective matters and how dialogue informs decisions.
 
-The software combines a public registry with a personal engagement workspace. Knowledge is reusable; a person's participation is always their own choice.
+The software combines a public stakeholder directory with a browser-local project workspace. The iGEM Registry is a reference for the directory’s visual layout; StakeBridge’s records and product-stage framework are designed for stakeholder engagement.
 
 ## Shared registry
 
-- Stable `SB_000001` identifiers and versioned entry documentation.
-- **Stakeholder entries** and **role guides** as individual resources; **pathway collections** combine them across a product lifecycle.
-- Search by ID, name, role, organisation and topic, with filters for entry type, product stage and current contact permission.
-- Rationale, suggested interview questions, integration examples, limitations, attribution and source documentation on every entry.
-- Team experience records, correction requests and a contribution process through GitHub Issues and reviewed pull requests.
-- Add a reference or pathway to a personal workspace as planning drafts. Other teams' outcomes are not copied into your own interview or integration fields.
+- **36 sourced IHP interview records**, including individual, group and organisational exchanges from ZJU-China 2026. A group interview is one record rather than a separate entry for each participant.
+- Full Rationale, Stakeholder interview and Integration accounts, source date labels, contributing team, original material links and source revisions.
+- Public professional contact channels for **10 records**, checked against university or institutional websites and accompanied by source links and verification dates. Uncertain identity matches remain unlisted. Patient accounts are anonymised and have no public contact details or photographs.
+- Search by name, organisation, topic, ID or interview content; filter by product stage and contact status; browse a compact directory and tabbed documentation pages.
+- Stable `SB_000001` identifiers, version history, team experience, correction requests and reviewed contributions through GitHub Issues and pull requests.
+- Add a registry reference to a local workspace as a planning draft, retaining attribution. Your interview and integration fields start empty.
 
-The initial collection contains five sourced stakeholder cases, three authored role guides and one pathway collection. Cases summarise ZJU-China's documented engagement; they do not imply public contact consent. No entry in this initial release claims an authorised public contact channel. The registry supports these channels when permission evidence and an expiry date are supplied.
+The initial records reproduce the team’s published accounts and date labels, including plans described in the source; they are not independent verification of outcomes. Public contact information is separate from willingness to participate in new interviews. No initial record claims a confirmed “open to interviews” status.
 
 ## Personal workspace
 
@@ -61,7 +61,7 @@ To use it from your iGEM wiki's Stakeholder Engagement section, link to the depl
 
 ## Contribute and maintain
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) to propose an entry, add experience, assemble a pathway or correct existing documentation. See [the maintainer guide](docs/MAINTAINERS.md) for the published data format and review process, and [data and permission](docs/PRIVACY.md) for storage and contact handling.
+See [CONTRIBUTING.md](CONTRIBUTING.md) to propose an engagement record, add experience or correct existing documentation. See [the maintainer guide](docs/MAINTAINERS.md) for the published data format and review process, and [data and permission](docs/PRIVACY.md) for storage and contact handling.
 
 The public source of truth is [`public/registry/entries.json`](public/registry/entries.json). Accepted contributions update that file in a reviewed pull request, pass registry checks, and are published with the next successful deployment. Submitted issues are proposals, not automatically accepted records.
 
@@ -74,11 +74,13 @@ src/registry/                            Catalogue, documentation and contributi
 public/registry/entries.json             Published community registry
 .github/ISSUE_TEMPLATE/                  Entry, experience and correction submissions
 scripts/check-registry.mjs               Registry integrity checks
+scripts/import-ihp.mjs                   Reproducible IHP source importer
+public/registry/contact-sources.json     Reviewed official contact sources
 tests/core.test.mjs                      Storage, import, permissions and export checks
 ```
 
 ## Attribution and licensing
 
-Source code is available under the [MIT License](LICENSE). The initial registry documentation derives from the [ZJU-China 2026 wiki](https://gitlab.igem.org/2026/zju-china), with sources attached to individual entries; registry content is covered separately by [CC BY 4.0](LICENSE-DATA.md). Third-party source materials retain their original terms. Suggested interview questions and role guides are authored resources rather than verbatim transcripts.
+Source code is available under the [MIT License](LICENSE). The initial registry documentation derives from the [ZJU-China 2026 wiki](https://gitlab.igem.org/2026/zju-china), with sources attached to individual entries; registry content is covered separately by [CC BY 4.0](LICENSE-DATA.md). Third-party source materials retain their original terms. The initial registry contains sourced engagement accounts rather than invented demonstration records.
 
-StakeBridge is an independent community project inspired by the [iGEM Registry](https://registry.igem.org/). It is not an official iGEM service.
+StakeBridge is an independent community project with a visual reference to the [iGEM Registry](https://registry.igem.org/). It is not an official iGEM service.
